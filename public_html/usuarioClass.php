@@ -1,9 +1,9 @@
 <?php
     class Usuario{
 
-        private $emailUsuario;
-        private $passwordUsuario;
-        private $nombreUsuario;
+        private string $emailUsuario;
+        private string $passwordUsuario;
+        private string $nombreUsuario;
 
         public function __construct($emailUsuario,$passwordUsuario,$nombreUsuario){
             $this->emailUsuario = $emailUsuario;
@@ -11,27 +11,27 @@
             $this->nombreUsuario = $nombreUsuario;
         }
 
-        public function setEmailUsuario($emailUsuario){
+        public function setEmailUsuario($emailUsuario):void{
             $this->emailUsuario=$emailUsuario;
         }
 
-        public function getEmailUsuario(){
+        public function getEmailUsuario():string{
             return $this->emailUsuario;
         }
 
-        public function setPasswordUsuario($passwordUsuario){
+        public function setPasswordUsuario($passwordUsuario):void{
             $this->passwordUsuario=$passwordUsuario;
         }
 
-        public function getPasswordUsuario(){
+        public function getPasswordUsuario():string{
             return $this->passwordUsuario;
         }
 
-        public function setNombreUsuario($nombreUsuario){
+        public function setNombreUsuario($nombreUsuario):void{
             $this->nombreUsuario=$nombreUsuario;
         }
 
-        public function getNombreUsuario(){
+        public function getNombreUsuario():string{
             return $this->nombreUsuario;
         }
 
