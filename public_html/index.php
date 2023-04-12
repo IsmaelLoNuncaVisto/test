@@ -10,10 +10,10 @@
         $contrasenia=$_GET["contrasenia"];
         $nombre=$_GET["nombre"];
 
-        $db_host="localhost";
+        $db_host="ismael@desarrollo2.lonuncavisto.org";
         $db_nombre="ismael";
         $db_user="ismael";
-        $db_contrasenia="ismael";
+        $db_contrasenia="";
 
         $conexion= mysqli_connect($db_host,$db_user,$db_contrasenia,$db_nombre);
 
