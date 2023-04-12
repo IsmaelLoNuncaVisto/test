@@ -55,6 +55,7 @@ class UsoBD
 
         
         while ($fila=mysqli_fetch_array($resultados, MYSQLI_ASSOC)) {
+            
             $Usuario=new Usuario($fila[0],$fila[1],$fila[2]);
             echo $Usuario->getEmailUsuario() . " " . $Usuario->getPasswordUsuario() . " " .$Usuario->getNombreUsuario() . " "; 
         }

@@ -1,9 +1,9 @@
 <?php
     class Usuario{
 
-        private string $emailUsuario;
-        private string $passwordUsuario;
-        private string $nombreUsuario;
+        private  $emailUsuario;
+        private  $passwordUsuario;
+        private  $nombreUsuario;
 
         public function __construct($emailUsuario,$passwordUsuario,$nombreUsuario){
             $this->emailUsuario = $emailUsuario;
