@@ -1,11 +1,11 @@
 <?php
     class Usuario{
 
-        private  $emailUsuario;
-        private  $passwordUsuario;
-        private  $nombreUsuario;
+        private  string $emailUsuario;
+        private  string $passwordUsuario;
+        private  string $nombreUsuario;
 
-        public function __construct($emailUsuario,$passwordUsuario,$nombreUsuario){
+        public function __construct(string $emailUsuario, string $passwordUsuario, string $nombreUsuario){
             $this->emailUsuario = $emailUsuario;
             $this->passwordUsuario = $passwordUsuario;
             $this->nombreUsuario = $nombreUsuario;
