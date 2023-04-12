@@ -1,14 +1,14 @@
 <?php
 
-        $aniadir=isset($_GET["aniadidura"]);
-        $mostrar=isset($_GET["mostrado"]);
-        $eliminar=isset($_GET["eliminacion"]);
+        $aniadir=isset($_POST["aniadidura"]);
+        $mostrar=isset($_POST["mostrado"]);
+        $eliminar=isset($_POST["eliminacion"]);
         
          
 
-        $email=$_GET["email"];
-        $contrasenia=$_GET["contrasenia"];
-        $nombre=$_GET["nombre"];
+        $email=$_POST["email"];
+        $contrasenia=$_POST["contrasenia"];
+        $nombre=$_POST["nombre"];
 
         $db_host="localhost";
         $db_nombre="ismael";
