@@ -53,16 +53,13 @@ class UsoBD
 
         $resultados=mysqli_query($this->conexion,$consulta);
 
-        $cnt =0;
+        
         while ($fila=mysqli_fetch_array($resultados, MYSQLI_ASSOC)) {
             $Usuario=new Usuario($fila['email'],$fila['contrasenia'],$fila['nombre']);
-            $listaUsuarios=array($cnt=>$Usuario);
-            $cnt++;
+            echo $Usuario->getEmailUsuario() . " " . $Usuario->getPasswordUsuario() . " " .$Usuario->getNombreUsuario() . " "; 
         }
 
-        for ($i=0; $i < count($listaUsuarios); $i++) { 
-            echo $listaUsuarios[$i];
-        }
+        
 
     }
 
