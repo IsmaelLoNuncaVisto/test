@@ -32,11 +32,13 @@
             $resultados=mysqli_query($conexion,$aniadirSQL);
         
         }
+        
          if($eliminar){
             $eliminarSQL="DELETE FROM usuario WHERE email LIKE '$email'";
             $resultados=mysqli_query($conexion,$eliminarSQL);
 
         }
+
          if($mostrar){
             $consulta="SELECT * FROM usuario";
 
