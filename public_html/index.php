@@ -13,7 +13,7 @@
         $db_host="localhost";
         $db_nombre="ismael";
         $db_user="ismael";
-        $db_contrasenia="";
+        $db_contrasenia="ismael";
 
         $conexion= mysqli_connect($db_host,$db_user,$db_contrasenia,$db_nombre);
 
