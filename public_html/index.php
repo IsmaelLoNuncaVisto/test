@@ -3,16 +3,17 @@
         $aniadir=isset($_GET["aniadidura"]);
         $mostrar=isset($_GET["mostrado"]);
         $eliminar=isset($_GET["eliminacion"]);
-
+        
+         
 
         $email=$_GET["email"];
         $contrasenia=$_GET["contrasenia"];
         $nombre=$_GET["nombre"];
 
-        $db_host="localhost";
+        $db_host="ismael@desarrollo2.lonuncavisto.org";
         $db_nombre="ismael";
-        $db_user="root";
-        $db_contrasenia="";
+        $db_user="ismael";
+        $db_contrasenia="ismael";
 
         $conexion= mysqli_connect($db_host,$db_user,$db_contrasenia,$db_nombre);
 
@@ -23,6 +24,8 @@
 
         }
 
+        
+
         mysqli_select_db($conexion,$db_nombre) or die ("No se encuentra la BBDD");
 
 
@@ -32,7 +35,7 @@
             $resultados=mysqli_query($conexion,$aniadirSQL);
         
         }
-        
+
          if($eliminar){
             $eliminarSQL="DELETE FROM usuario WHERE email LIKE '$email'";
             $resultados=mysqli_query($conexion,$eliminarSQL);
