@@ -10,7 +10,7 @@
         $contrasenia=$_GET["contrasenia"];
         $nombre=$_GET["nombre"];
 
-        $db_host="ismael@127.0.0.1";
+        $db_host="localhost";
         $db_nombre="ismael";
         $db_user="ismael";
         $db_contrasenia="ismael";
