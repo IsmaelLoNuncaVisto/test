@@ -23,23 +23,12 @@
         }
 
          if($eliminar){
-            $eliminarSQL="DELETE FROM usuario WHERE email LIKE '$email'";
-            $resultados=mysqli_query($conexion,$eliminarSQL);
+            $conexion->eliminarUsuario($email);
 
         }
 
          if($mostrar){
-            $consulta="SELECT * FROM usuario";
-
-            $resultados=mysqli_query($conexion,$consulta);
-            
-            while ($fila=mysqli_fetch_array($resultados, MYSQLI_ASSOC)) {
-                echo "<table><tr><td>";
-                echo $fila['email'] . "</td><td>";
-                echo $fila['contrasenia'] . "</td><td>";
-                echo $fila['nombre'] . "</td></tr></table>";
-                echo  "<br>";
-            }
+            $conexion->mostrarUsuarios();
         }
 
         $conexion->cerrarConexion();

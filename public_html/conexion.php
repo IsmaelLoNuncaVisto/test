@@ -32,8 +32,33 @@ class UsoBD
     public function aniadirUsuario($emailUsuario,$psswdUsuario,$nombreUsuario){
             $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
             if(mysqli_query($this->conexion,$aniadirSQL)){
-                
+                echo "Usuario añadido";
+            }else{
+                echo "Error al añadir usuario";
             }
+    }
+
+    public function eliminarUsuario($emailUsuario){
+        $eliminarSQL="DELETE FROM usuario WHERE email LIKE '$emailUsuario'";
+            if(mysqli_query($this->conexion,$eliminarSQL)){
+                echo "Usuario eliminado";
+            }else{
+                echo "El usuario no se ha podio eliminar";
+            }
+    }
+
+    public function mostrarUsuarios(){
+        $consulta="SELECT * FROM usuario";
+
+        $resultados=mysqli_query($this->conexion,$consulta);
+        
+        while ($fila=mysqli_fetch_array($resultados, MYSQLI_ASSOC)) {
+            echo "<table><tr><td>";
+            echo $fila['email'] . "</td><td>";
+            echo $fila['contrasenia'] . "</td><td>";
+            echo $fila['nombre'] . "</td></tr></table>";
+            echo  "<br>";
+        }
     }
 
 }
