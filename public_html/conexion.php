@@ -37,7 +37,7 @@ class UsoBD
                 echo "Error al añadir usuario";
             }
     }
-
+    
     public function eliminarUsuario($emailUsuario){
         $eliminarSQL="DELETE FROM usuario WHERE email LIKE '$emailUsuario'";
             if(mysqli_query($this->conexion,$eliminarSQL)){
@@ -47,21 +47,15 @@ class UsoBD
             }
     }
 
+    //Muestra a los Usuarios
     public function mostrarUsuarios(){
-
-        $consulta="SELECT * FROM usuario";
-
-        $resultados=mysqli_query($this->conexion,$consulta);
-
-        
-        while ($fila=mysqli_fetch_array($resultados, MYSQLI_ASSOC)) {
-            
-            $Usuario=new Usuario($fila[0],$fila[1],$fila[2]);
-            echo $Usuario->getEmailUsuario() . " " . $Usuario->getPasswordUsuario() . " " .$Usuario->getNombreUsuario() . " "; 
+        require("usuarioClass.php");
+        $mostrarSQL="SELECT * FROM usuario";
+        $resultado=mysqli_query($this->conexion,$mostrarSQL);
+        while($fila=mysqli_fetch_array($resultado,MYSQLI_ASSOC)){
+            $Usuario=new Usuario($fila['email'],$fila['contrasenia'],$fila['nombre']);
+            echo $Usuario->getEmailUsuario() . "\t" . $Usuario->getPasswordUsuario() . "\t" . $Usuario->getNombreUsuario() . "<br>";
         }
-
-        
-
     }
 
 }
