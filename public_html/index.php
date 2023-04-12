@@ -28,7 +28,7 @@
 
         mysqli_select_db($conexion,$db_nombre) or die ("No se encuentra la BBDD");
 
-        echo "Esto es una prueba de que funciona el php";
+        //echo "Esto es una prueba de que funciona el php";
         
         if($aniadir){
             $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$email','$contrasenia','$nombre')";
