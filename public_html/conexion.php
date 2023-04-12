@@ -48,17 +48,22 @@ class UsoBD
     }
 
     public function mostrarUsuarios(){
+
         $consulta="SELECT * FROM usuario";
 
         $resultados=mysqli_query($this->conexion,$consulta);
-        
+
+        $cnt =0;
         while ($fila=mysqli_fetch_array($resultados, MYSQLI_ASSOC)) {
-            echo "<table><tr><td>";
-            echo $fila['email'] . "</td><td>";
-            echo $fila['contrasenia'] . "</td><td>";
-            echo $fila['nombre'] . "</td></tr></table>";
-            echo  "<br>";
+            $Usuario=new Usuario($fila['email'],$fila['contrasenia'],$fila['nombre']);
+            $listaUsuarios=array($cnt=>$Usuario);
+            $cnt++;
         }
+
+        for ($i=0; $i < count($listaUsuarios); $i++) { 
+            echo $listaUsuarios[$i];
+        }
+
     }
 
 }
