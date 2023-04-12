@@ -31,7 +31,7 @@
 
         
         if($aniadir){
-            $aniadirSQL="INSERT INTO usuario(email,contraseña,nombre) VALUES ('$email','$contrasenia','$nombre')";
+            $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$email','$contrasenia','$nombre')";
             $resultados=mysqli_query($conexion,$aniadirSQL);
         
         }
