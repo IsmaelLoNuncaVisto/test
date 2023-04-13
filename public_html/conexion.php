@@ -28,26 +28,34 @@ class UsoBD
         mysqli_close($this->conexion);
     }
 
-    //Funcion para añadir usuario a la BD
+    /*Añade usuario a la BD
+        Realiza 
+    */
     public function aniadirUsuario($emailUsuario,$psswdUsuario,$nombreUsuario){
             $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
             if(mysqli_query($this->conexion,$aniadirSQL)){
                 echo "Usuario añadido";
             }else{
-                echo "Error al añadir usuario";
+                echo "<script> alert ('Usuario ya existe');</script>";    
+                exit;
             }
     }
-    
+
     public function eliminarUsuario($emailUsuario){
         $eliminarSQL="DELETE FROM usuario WHERE email LIKE '$emailUsuario'";
             if(mysqli_query($this->conexion,$eliminarSQL)){
                 echo "Usuario eliminado";
             }else{
-                echo "El usuario no se ha podio eliminar";
+                echo "<script> alert ('Usuario no existe');</script>";
             }
     }
 
-    //Muestra a los Usuarios
+    /*Muestra a los Usuarios
+        Selecciona todos los Usuarios que hay en la BD
+        Recorre el Array generado
+        Crea una Objeto Usuario por cada Valaor
+        Hace un ECHO pr cada Objeto
+    */
     public function mostrarUsuarios(){
         require("usuarioClass.php");
         $mostrarSQL="SELECT * FROM usuario";

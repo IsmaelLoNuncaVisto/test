@@ -10,30 +10,21 @@
         $contrasenia=$_POST["contrasenia"];
         $nombre=$_POST["nombre"];
 
-        //Establece conexión con el servidor
+        //Establece conexión con la BD
         require("conexion.php");
-        
         $conexion= new UsoBD();
-
         $conexion->establecerConexion();
 
         if($aniadir){
             $conexion->aniadirUsuario($email,$contrasenia,$nombre);
-        
         }
 
          if($eliminar){
             $conexion->eliminarUsuario($email);
-
         }
-
          if($mostrar){
             $conexion->mostrarUsuarios();
         }
 
         $conexion->cerrarConexion();
-
-        
-        
-
     ?>
