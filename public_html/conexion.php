@@ -31,12 +31,19 @@ class UsoBD
     /*Añade usuario a la BD
     */
     public function aniadirUsuario($emailUsuario,$psswdUsuario,$nombreUsuario){
-            $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
-            if(mysqli_query($this->conexion,$aniadirSQL)){
-                echo "Usuario añadido";
+
+        $patronEmail="/@prueba.com/";
+        $emailValido=preg_match_all($patronEmail,$emailUsuario);
+            if($emailValido){
+                $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
+                if(mysqli_query($this->conexion,$aniadirSQL)){
+                    echo "Usuario añadido";
+                }else{
+                    echo "<script> alert ('Usuario ya existe');</script>";    
+                    exit;
+                }
             }else{
-                echo "<script> alert ('Usuario ya existe');</script>";    
-                exit;
+                echo "<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>";
             }
     }
 
