@@ -36,11 +36,10 @@
         */
          if($eliminar){
             if($email!=""&&$contrasenia!=""&&$nombre!=""){
-                $conexion->eliminarUsuario($email);
+                $conexion->eliminarUsuario($email,$contrasenia,$nombre);
                 }else{
                     echo "<script>alert ('Ha dejado algún espacio en blanco');</script>";
                 }
-            
         }
          if($mostrar){
             $conexion->mostrarUsuarios();
