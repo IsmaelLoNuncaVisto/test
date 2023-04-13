@@ -29,7 +29,6 @@ class UsoBD
     }
 
     /*Añade usuario a la BD
-        Realiza 
     */
     public function aniadirUsuario($emailUsuario,$psswdUsuario,$nombreUsuario){
             $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
@@ -41,6 +40,8 @@ class UsoBD
             }
     }
 
+    /*Elimina usuario a la BD
+    */
     public function eliminarUsuario($emailUsuario){
         $eliminarSQL="DELETE FROM usuario WHERE email LIKE '$emailUsuario'";
             if(mysqli_query($this->conexion,$eliminarSQL)){
