@@ -32,7 +32,7 @@ class UsoBD
     */
     public function aniadirUsuario($emailUsuario,$psswdUsuario,$nombreUsuario){
 
-        $patronEmail="/@prueba.com/";
+        $patronEmail="/@prueba.com$/";
         $emailValido=preg_match_all($patronEmail,$emailUsuario);
             if($emailValido){
                 $aniadirSQL="INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
