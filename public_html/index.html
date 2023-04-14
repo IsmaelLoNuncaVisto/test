@@ -6,25 +6,24 @@
     <link rel="stylesheet" href="./ficheros_css/index.css">
 </head>
 <body>
-
-
-
-
-    <form action="/ficheros_php/index.php" method="post">
+<header>
+</header>
+<nav>
+</nav>
+<section>
+    <form id="formulario" action="./ficheros_php/accesoUsuario.php" method="post">
         <label>Email: <input type="text" placeholder="ejemplo@prueba.com" name="email"></label>
         <p></p>
         <label>Contraseña: <input type="password" name="contrasenia"></label>
         <p></p>
-        <label>Nombre: <input type="text" name="nombre"></label>
-        <p></p>
-        
-
-
-        <input type="submit" name="aniadidura" value="Añadir">
-        <input type="submit" name="eliminacion" value="Eliminar">
-        <input type="submit" name="mostrado" value="Mostrar">
-
+        <input type="submit" name="iniciarSesion" value="IniciarSesion">
+        <!--<button onclick="location.href='https://wwwdes.ismael.lonuncavisto.org/crearUsuario.html'">Crear Usuario</button>-->
+        <button><a href="crearUsuario.html">Crear Usuario</a></button>
+        <!--<input type="submit" name="crearUsuario" value="Crear Usuario" onclick="window.location.href='https://wwwdes.ismael.lonuncavisto.org/crearUsuario.html'">-->
     </form>
+
+
+</section>
 
 </body>
 
