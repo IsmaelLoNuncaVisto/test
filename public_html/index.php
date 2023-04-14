@@ -14,6 +14,7 @@
         require("conexion.php");
         $conexion= new UsoBD();
         $conexion->establecerConexion();
+        
 
 
         /*
@@ -26,6 +27,9 @@
             $conexion->aniadirUsuario($email,$contrasenia,$nombre);
             }else{
                 echo "<script>alert ('Ha dejado algún espacio en blanco');</script>";
+                echo "<script>window.history.back();</script>";
+                
+               
             }
         }
 
@@ -39,6 +43,7 @@
                 $conexion->eliminarUsuario($email,$contrasenia,$nombre);
                 }else{
                     echo "<script>alert ('Ha dejado algún espacio en blanco');</script>";
+                    echo "<script>window.history.back();</script>";
                 }
         }
          if($mostrar){
@@ -46,4 +51,6 @@
         }
 
         $conexion->cerrarConexion();
+
+        
     ?>
