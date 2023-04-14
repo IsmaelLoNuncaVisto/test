@@ -2,12 +2,13 @@
 
 
         //Recoger datos de HTML
-        $aniadir=isset($_POST["aniadidura"]);
+        $aniadir=isset($_POST["aniadir"]);
         $mostrar=isset($_POST["mostrado"]);
         $eliminar=isset($_POST["eliminacion"]);
 
         $email=$_POST["email"];
         $contrasenia=$_POST["contrasenia"];
+        $repetirContrasenia=$_POST["repetirContrasenia"];
         $nombre=$_POST["nombre"];
 
         //Establece conexión con la BD
@@ -23,8 +24,8 @@
         Si están vacíos lanza 'alert()' y vuelve a la página anterior
         */
         if($aniadir){
-            if($email!=""&&$contrasenia!=""&&$nombre!=""){
-            $conexion->aniadirUsuario($email,$contrasenia,$nombre);
+            if($email!=""&&$contrasenia!=""&&$nombre!=""&&$repetirContrasenia!=""){
+            $conexion->aniadirUsuario($email,$contrasenia,$nombre,$repetirContrasenia);
             }else{
                 echo "<script>alert ('Ha dejado algún espacio en blanco');</script>";
                 echo "<script>window.history.back();</script>";
@@ -50,7 +51,6 @@
          if($mostrar){
             $conexion->mostrarUsuarios();
         }
-
         $conexion->cerrarConexion();
 
         
