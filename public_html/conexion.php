@@ -30,6 +30,9 @@ class UsoBD
     }
 
     /*Añade usuario a la BD
+    Comprueba la forma correcta del email, Error al estar mal escrita 
+    Comprueba que exista el usuario. Error si existe
+    En caso de Error regresa a la pagina de referencia 
      */
     public function aniadirUsuario($emailUsuario, $psswdUsuario, $nombreUsuario)
     {
@@ -55,6 +58,9 @@ class UsoBD
     }
 
     /*Elimina usuario a la BD
+    Comprueba la forma correcta del email, Error al estar mal escrita 
+    Comprueba que exista el usuario. Error si no existe
+    En caso de Error regresa a la pagina de referencia 
      */
     public function eliminarUsuario($emailUsuario, $psswdUsuario, $nombreUsuario)
     {
