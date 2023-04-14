@@ -37,11 +37,13 @@ class UsoBD
         $emailValido =filter_var($emailUsuario,FILTER_VALIDATE_EMAIL);
         try {
             if ($emailValido==false) {
-                throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>");
+                throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>"
+                                    . "<script>window.location.href = document.referrer;</script>");
             }
             $aniadirSQL = "INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
             if (!mysqli_query($this->conexion, $aniadirSQL)) {
-                throw new mysqli_sql_exception("<script> alert ('Usuario ya existe');</script>");
+                throw new mysqli_sql_exception("<script> alert ('Usuario ya existe');</script>"
+                                             . "<script>window.location.href = document.referrer;</script>");
             }
             echo "<script> alert ('Usuario añadido');</script>";
         } catch (mysqli_sql_exception $me) {
@@ -60,7 +62,10 @@ class UsoBD
         $emailValido=filter_var($emailUsuario,FILTER_VALIDATE_EMAIL);
         try {
             if (!$emailValido) {
-                throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>");
+                
+                throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>" 
+                                    . "<script>window.location.href = document.referrer;</script>");
+                
             }
 
             $inyeccionEmail=mysqli_real_escape_string($this->conexion, $emailUsuario);
@@ -73,7 +78,8 @@ class UsoBD
             }
 
             if($email==""){
-                throw new mysqli_sql_exception("<script> alert ('Usuario no existe');</script>");
+                throw new mysqli_sql_exception("<script> alert ('Usuario no existe');</script>"
+                                            . "<script>window.location.href = document.referrer;</script>");
             } 
             $inyeccionContrasenia=mysqli_real_escape_string($this->conexion, $psswdUsuario);
             //$inyeccionNombre=mysqli_real_escape_string($this->conexion, $nombreUsuario);
