@@ -34,7 +34,7 @@ class UsoBD
     Comprueba que exista el usuario. Error si existe
     En caso de Error regresa a la pagina de referencia 
      */
-    public function aniadirUsuario($emailUsuario, $psswdUsuario, $nombreUsuario)
+    public function aniadirUsuario($emailUsuario, $psswdUsuario, $nombreUsuario,$psswdRepetirContrasenia)
     {
         //$emailValido = preg_match_all("/@prueba.com$/", $emailUsuario);
         $emailValido =filter_var($emailUsuario,FILTER_VALIDATE_EMAIL);
@@ -43,17 +43,41 @@ class UsoBD
                 throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>"
                                     . "<script>window.location.href = document.referrer;</script>");
             }
-            $aniadirSQL = "INSERT INTO usuario(email,contrasenia,nombre) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario')";
+
+            if($psswdUsuario!=$psswdRepetirContrasenia){
+                throw new Error("<script> alert ('Contraseñas no coinciden')</script>"
+                                    . "<script>window.location.href = document.referrer;</script>");
+            }
+            
+
+            $usuarios = "SELECT * FROM usuario";
+            $resultado = mysqli_query($this->conexion, $usuarios);
+            $cnt=0;
+            while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+                $cnt++;
+            }
+
+            if($cnt==0){
+                $aniadirSQL = "INSERT INTO usuario(email,contrasenia,nombre,administrador) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario',1)";
+            }else{
+                $aniadirSQL = "INSERT INTO usuario(email,contrasenia,nombre,administrador) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario',0)";
+            }         
+
+            
             if (!mysqli_query($this->conexion, $aniadirSQL)) {
                 throw new mysqli_sql_exception("<script> alert ('Usuario ya existe');</script>"
                                              . "<script>window.location.href = document.referrer;</script>");
             }
-            echo "<script> alert ('Usuario añadido');</script>";
+            echo "<script> alert ('Usuario añadido');</script>"
+                . "<script>window.location.href = document.referrer;</script>";
+        }catch(Error $er){
+            echo $er->getMessage();
         } catch (mysqli_sql_exception $me) {
             echo $me->getMessage();
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+
 
     }
 
@@ -113,6 +137,38 @@ class UsoBD
         while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
             $Usuario = new Usuario($fila['email'], $fila['contrasenia'], $fila['nombre']);
             echo $Usuario->getEmailUsuario() . "\t" . $Usuario->getPasswordUsuario() . "\t" . $Usuario->getNombreUsuario() . "<br>";
+        }
+    }
+
+    public function existeUsuario($emailUsuario,$psswdUsuario){
+        $emailValido=filter_var($emailUsuario,FILTER_VALIDATE_EMAIL);
+        try {
+            if (!$emailValido) {
+                
+                throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>" 
+                                    . "<script>window.location.href = document.referrer;</script>");
+                
+            }
+
+            $inyeccionEmail=mysqli_real_escape_string($this->conexion, $emailUsuario);
+
+            $mostrarUsuario="SELECT email FROM usuario WHERE email= '$inyeccionEmail'AND contrasenia='$psswdUsuario'";
+            $existenciaEmail=mysqli_query($this->conexion,$mostrarUsuario);
+
+            while ($fila=mysqli_fetch_assoc($existenciaEmail)) {
+                $email=$fila['email'];
+            }
+
+            if($email==""){
+                throw new mysqli_sql_exception("<script> alert ('Usuario no existe');</script>"
+                                            . "<script>window.location.href = document.referrer;</script>");
+            } 
+            echo "<script>window.open('https://wwwdes.ismael.lonuncavisto.org/iniciar.html');</script>";
+            echo "<script>window.close();</script>";
+        } catch (mysqli_sql_exception $me) {
+            echo $me->getMessage();
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 
