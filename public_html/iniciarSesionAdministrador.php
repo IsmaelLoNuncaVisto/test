@@ -27,7 +27,7 @@
             <div>Email:</div>
             <?php foreach ($emailUsuarios as $email) { ?>
                 <div><?php echo $email; ?>
-                    <a href="">Editar</a> 
+                    <a href="./ficheros_php/editarUsuario.php">Editar</a> 
                     <a href="./ficheros_php/eliminarUsuario.php?email=<?php echo urlencode($email);?>" onclick="return confirmarBorrado()">Eliminar</a>  
                 </div> 
             <?php }?>
