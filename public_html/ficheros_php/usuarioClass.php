@@ -4,11 +4,13 @@
         private  string $emailUsuario;
         private  string $passwordUsuario;
         private  string $nombreUsuario;
+        private  int  $administrador;
 
-        public function __construct(string $emailUsuario, string $passwordUsuario, string $nombreUsuario){
+        public function __construct(string $emailUsuario, string $passwordUsuario, string $nombreUsuario, int $administrador){
             $this->emailUsuario = $emailUsuario;
             $this->passwordUsuario = $passwordUsuario;
             $this->nombreUsuario = $nombreUsuario;
+            $this->administrador= $administrador;
         }
 
         public function setEmailUsuario($emailUsuario):void{
@@ -33,6 +35,14 @@
 
         public function getNombreUsuario():string{
             return $this->nombreUsuario;
+        }
+
+        public function setAdministrador($administrador):void{
+            $this->administrador=$administrador;
+        }
+
+        public function getAdministrador():int{
+            return $this->administrador;
         }
 
     }
