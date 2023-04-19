@@ -22,9 +22,7 @@
             $conexion->establecerConexion();
             $emailUsuarios=$conexion->recogerEmailsUsuarios();
             require("./ficheros_php/usuarioClass.php");
-            $usuario=$conexion->mostrarUsuarios();
-            
-            
+            $usuario=$conexion->mostrarUsuarios();  
         ?>
 
             <form method="post">
