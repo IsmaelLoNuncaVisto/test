@@ -82,9 +82,9 @@ class UsoBD
      */
     public function eliminarUsuario($emailUsuario)
     {
-        
+
         try {
-            $inyeccionEmail = mysqli_real_escape_string($this->conexion, $emailUsuario); 
+            $inyeccionEmail = mysqli_real_escape_string($this->conexion, $emailUsuario);
             $mostrarUsuario = "SELECT email FROM usuario WHERE email= '$inyeccionEmail'";
             $existenciaEmail = mysqli_query($this->conexion, $mostrarUsuario);
             while ($fila = mysqli_fetch_assoc($existenciaEmail)) {
@@ -96,7 +96,6 @@ class UsoBD
                     . "<script>window.location.href = document.referrer;</script>");
             }
 
-                       
             //$inyeccionNombre=mysqli_real_escape_string($this->conexion, $nombreUsuario);
             $eliminarSQL = "DELETE FROM usuario WHERE email = '$inyeccionEmail'  ";
             mysqli_query($this->conexion, $eliminarSQL);
@@ -129,21 +128,17 @@ class UsoBD
 
     }
 
-
-
     //Hace un select y luego un echo de los alumnos
-    public function mostrarUsuarios():array
+    public function mostrarUsuarios(): array
     {
-        require "usuarioClass.php";
         $mostrarSQL = "SELECT * FROM usuario";
         $resultado = mysqli_query($this->conexion, $mostrarSQL);
         while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-            $Usuario = new Usuario($fila['email'], $fila['contrasenia'], $fila['nombre']);
-            $user= $Usuario->getEmailUsuario() . ", " . $Usuario->getPasswordUsuario() . ", " . $Usuario->getNombreUsuario();
-            $array[]=$user;
+            $Usuario = new Usuario($fila['email'], $fila['contrasenia'], $fila['nombre'], $fila['administrador']);
+            $array[] = $Usuario;
         }
         return $array;
-        
+
     }
 
     public function existeUsuario($emailUsuario, $psswdUsuario): bool
@@ -190,6 +185,39 @@ class UsoBD
         while ($fila = mysqli_fetch_assoc($devolverAdministrador)) {
             return $fila['administrador'];
         }
+    }
+
+    public function usuarioEscogido($emailUsuario): Usuario
+    {
+
+        $email = '';
+        $password = '';
+        $nombre = '';
+        $adminitrador = 0;
+
+        $sentenciaSQL = "SELECT * FROM usuario WHERE email LIKE '$emailUsuario'";
+        $result = mysqli_query($this->conexion, $sentenciaSQL);
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $email = $fila['email'];
+            $password = $fila['contrasenia'];
+            $nombre = $fila['nombre'];
+            $adminitrador = $fila['administrador'];
+        }
+
+        $Usuario = new Usuario($email, $password, $nombre, $adminitrador);
+
+        return $Usuario;
+    }
+
+    public function actualizarDatosUsuario($emailAntiguo,$emailNuevo,$passwordNueva,$nombreNuevo,$administradorNuevo){
+         $sentenciaSQL="UPDATE usuario SET email='$emailNuevo', 
+                    contrasenia='$passwordNueva', 
+                    nombre='$nombreNuevo',
+                    administrador= $administradorNuevo
+                    WHERE email='$emailAntiguo'";
+        mysqli_query($this->conexion,$sentenciaSQL);
+        echo "<script> alert ('Usuario actualizado');</script>";
+        
     }
 
 }
