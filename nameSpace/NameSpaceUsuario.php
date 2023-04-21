@@ -1,5 +1,0 @@
-namespace MiNameSpace;
-
-class Usuario{
-    
-}
