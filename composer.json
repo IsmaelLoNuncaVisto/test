@@ -1,0 +1,25 @@
+{
+    "name": "ismaellonuncavisto/test",
+    "description": "pruebaComposer",
+    "type": "project",
+    "require": {
+        "monolog/monolog": "^2.9",
+        "guzzlehttp/guzzle": "^7.5",
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.16"
+    },
+    "license": "MIT License",
+    "autoload": {
+        "psr-4": {
+            "Ismaellonuncavisto\\Test\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ismael",
+            "email": "ismael@lonuncavisto.com"
+        }
+    ]
+}
