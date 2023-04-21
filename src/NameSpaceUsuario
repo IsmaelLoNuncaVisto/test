@@ -1,0 +1,5 @@
+namespace MiNameSpace;
+
+class Usuario{
+    
+}
