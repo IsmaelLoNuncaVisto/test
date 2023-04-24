@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,6 +8,7 @@
     <body>
 
     <?php
+    
 session_start();
 
 if (!isset($_SESSION['email'])) {
@@ -17,11 +16,11 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 
-require "./ficheros_php/conexion.php";
+require ("ficheros_php/conexion.php");
 $conexion = new UsoBD();
 $conexion->establecerConexion();
 $emailUsuarios = $conexion->recogerEmailsUsuarios();
-require "./ficheros_php/usuarioClass.php";
+
 $usuario = $conexion->mostrarUsuarios();
 
 ?>
