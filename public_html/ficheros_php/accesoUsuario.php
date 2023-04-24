@@ -9,7 +9,7 @@ $email = $_POST["email"];
 $contrasenia = $_POST["password"];
 
 //Establece conexión con la BD
-require "conexion.php";
+require ("conexion.php");
 $conexion = new UsoBD();
 $conexion->establecerConexion();
 if ($iniciar && $conexion->existeUsuario($email, $contrasenia)) {

@@ -1,5 +1,8 @@
 <?php
 
+
+use mysqli_sql_exception;
+
 class UsoBD
 {
 
@@ -77,20 +80,16 @@ class UsoBD
                 $email = $fila['email'];
             }
             if ($email == "") {
-
                 throw new mysqli_sql_exception("<script> alert ('Usuario no existe');</script>"
                     . "<script>window.location.href = document.referrer;</script>");
             }
-
             //$inyeccionNombre=mysqli_real_escape_string($this->conexion, $nombreUsuario);
-            $eliminarSQL = "DELETE FROM usuario WHERE email = '$inyeccionEmail'  ";
+            $eliminarSQL = "DELETE FROM usuario WHERE email = '$inyeccionEmail'";
             mysqli_query($this->conexion, $eliminarSQL);
             echo "<script> alert ('Usuario eliminado');</script>"
                 . "<script>window.location.href = document.referrer;</script>";
         } catch (mysqli_sql_exception $me) {
             echo $me->getMessage();
-        } catch (Exception $e) {
-            echo $e->getMessage();
         }
     }
 
@@ -117,6 +116,8 @@ class UsoBD
     //Hace un select y luego un echo de los alumnos
     public function mostrarUsuarios(): array
     {
+        
+        require("clases/Usuario.php");
         $mostrarSQL = "SELECT * FROM usuario";
         $resultado = mysqli_query($this->conexion, $mostrarSQL);
         while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
@@ -131,12 +132,7 @@ class UsoBD
     {
         $emailValido = filter_var($emailUsuario, FILTER_VALIDATE_EMAIL);
         try {
-            if (!$emailValido) {
 
-                throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>"
-                    . "<script>window.location.href = document.referrer;</script>");
-
-            }
 
             $inyeccionEmail = mysqli_real_escape_string($this->conexion, $emailUsuario);
 
@@ -158,10 +154,7 @@ class UsoBD
         } catch (mysqli_sql_exception $me) {
             echo $me->getMessage();
             return false;
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            return false;
-        }
+        } 
     }
 
     public function controlAdministrador($emailUsuario): int
@@ -201,9 +194,7 @@ class UsoBD
                     nombre='$nombreNuevo',
                     administrador= $administradorNuevo
                     WHERE email='$emailAntiguo'";
-        mysqli_query($this->conexion,$sentenciaSQL);
-        echo "<script> alert ('Usuario actualizado');</script>";
-        
+        mysqli_query($this->conexion,$sentenciaSQL);        
     }
 
 }
