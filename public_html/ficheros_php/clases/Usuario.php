@@ -1,8 +1,6 @@
 <?php
 
-    namespace src;
-
-    class Usuaro{
+    class Usuario{
         private  string $emailUsuario;
         private  string $passwordUsuario;
         private  string $nombreUsuario;
