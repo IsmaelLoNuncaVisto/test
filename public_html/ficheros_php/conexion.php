@@ -39,15 +39,6 @@ class UsoBD
         //$emailValido = preg_match_all("/@prueba.com$/", $emailUsuario);
         $emailValido = filter_var($emailUsuario, FILTER_VALIDATE_EMAIL);
         try {
-            if ($emailValido == false) {
-                throw new Exception("<script> alert ('Email invalido. Estructura del emal----> ejemplousuario@prueba.com')</script>"
-                    . "<script>window.location.href = document.referrer;</script>");
-            }
-
-            if ($psswdUsuario != $psswdRepetirContrasenia) {
-                throw new Error("<script> alert ('Contraseñas no coinciden')</script>"
-                    . "<script>window.location.href = document.referrer;</script>");
-            }
             $usuarios = "SELECT * FROM usuario";
             $resultado = mysqli_query($this->conexion, $usuarios);
             $cnt = 0;
@@ -65,14 +56,9 @@ class UsoBD
             }
             echo "<script> alert ('Usuario añadido');</script>"
                 . "<script>window.location.href = document.referrer;</script>";
-        } catch (Error $er) {
-            echo $er->getMessage();
         } catch (mysqli_sql_exception $me) {
             echo $me->getMessage();
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-
+        } 
     }
 
     /*Elimina usuario a la BD

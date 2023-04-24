@@ -28,9 +28,7 @@
             $conexion->aniadirUsuario($email,$contrasenia,$nombre,$repetirContrasenia);
             }else{
                 echo "<script>alert ('Ha dejado algún espacio en blanco');</script>";
-                echo "<script>window.history.back();</script>";
-                
-               
+                echo "<script>window.history.back();</script>"; 
             }
         }
 
