@@ -73,17 +73,7 @@ $usuario = $conexion->mostrarUsuarios();
             </form>
             <?php }?>
                 </table>
-
-
-
         <?php }?>
-
-
-
-
-
-
-
         <?php $conexion->cerrarConexion();?>
     </body>
 </html>
