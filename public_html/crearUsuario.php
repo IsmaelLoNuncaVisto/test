@@ -1,49 +1,61 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Crear Usuario</title>
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
-        <script>
+    <script>
 
-            function camposVacios(){
-                var email=document.getElementById('email');
-                var contrasenia=document.getElementById('contrasenia');
-                var contraseniaRep=document.getElementById('repetirConstrasenia');
-                var nombre=document.getElementById('nombre');
-                if(email==""||contrasenia==""||contraseniaRep==""||nombre==""){
-                    alert("Existe algún campo vacío");
-                    return false;
-                }else{
-                    if(contrasenia!=contraseniaRep){
-                        alert("Las contraseñas no existen");
-                        return false;
-                    }
-                    return true;
+        function camposVacios(){
+            var inputs = document.getElementById("inputuserName");
+            for (var i=0; i<inputs.length; i++) {
+                if(inputs[i]=""){
+                    inputs[i].style.background="red";
                 }
+                
             }
-
-        </script>
-
-
-
-        <section>
-            <form action="./ficheros_php/index.php" method="post">
-                <label>Email: <input type="email" placeholder="ejemplo@ejemplo.com" name="email"></label>
-                <p></p>
-                <label>Contraseña: <input type="password" name="contrasenia"></label>
-                <p></p>
-                <label>Repita Contraseña: <input type="password"  name="repetirContrasenia"></label>
-                <p></p>
-                <label>Nombre: <input type="text" name="nombre"></label>
-                <p></p>
-                <button type="submit" name="aniadir" onclick="return camporVacios()" value="Aniadir">Añadir</button>
-                <button onclick="<?php  header('Location: https://wwwdes.ismael.lonuncavisto.org/index.php');exit;?>">Volver</button>
-            </form>
-
-        </section>
-
-    </body>
+        }
+    </script>
+    <form action="" method="$_POST">
+        <ul>
+            <li>
+                <label for="userName">User Name:</label>
+                <input type="text" name="userName" id="inputuserName">
+            </li>
+            <li>
+                <label for="email">Email:</label>
+                <input type="email" placeholder="ejemplo@prueba.com" name="email" id="inputname">
+            </li>
+            <li>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="inputpassword">
+            </li>
+            <li>
+                <label for="passwordConfirm">Confirm Password:</label>
+                <input type="password" name="passwordConfirm" id="inputpasswordConfirm">
+            </li>
+            <li>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="inputnomber">
+            </li>
+            <li>
+                <label for="age">Age:</label>
+                <input type="number" min="0" max="99" name="age" id="inputage">
+            </li>
+            <li>
+                <label for="telephoneNumber">Telephone:</label>
+                <input type="text" name="telephoneNumber" id="inputtelephoneNumber">
+            </li>
+            <li>
+                <button type="submit" name="create" onclick="camposVacios()">Create Account</button>
+                <button type="submit" name="return">Return</button>
+            </li>
+        </ul>
+    </form>
+</body>
 </html>
