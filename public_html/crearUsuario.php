@@ -1,3 +1,49 @@
+<?php
+
+//AccionBotones
+$crearUsuario=isset($_POST["create"]);
+$volver=isset($_POST["volver"]);
+
+//VariablesCrearUsuario
+$userName=$_POST["userName"];
+$email=$_POST["email"];
+$psswd=$_POST["password"];
+$nombre=$_POST["name"];
+$age=$_POST["age"];
+$telephone=$_POST["telephoneNumber"];
+
+//AccesoConexion
+
+require("conexion.php");
+$conexion= new UsoBD;
+$conexion->establecerConexion();
+
+if(isset($_POST["create"])){
+    /*AL dar al botón se debe crear un objeto USUARIO
+    * por lo que primero confirmamos las condiciones para crearlo
+    + Pasamos ese objeto a la conexión y lo intentamos añadir
+    + si ya existe un usuario con  mismo 'userName' o 'email'
+    + impedimos que se cree
+    */
+    //Primero creamos el HASH porque al mandar un array no pasaría la encriptación y habría que
+    //regenerar el array a la hora de ingresar las credenciales
+    $hash=$conexion->encriptadoPasword($psswd);
+    $crearUsuario=array($userName,$email,$hash,$nombre,$age,$telephone);
+
+    if($conexion->aniadirUsuario($crearUsuario)){
+        echo "Usuario añadido";
+    }else{
+        echo "El usuario ya existe";
+    }
+}
+
+if($volver){
+    header("Location: https://wwwdes.ismael.lonuncavisto.org");
+    exit;
+}
+
+$conexion->cerrarConexion();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -5,57 +51,99 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <title>CrearUsuario</title>
+    <link rel="stylesheet" href="inicio.css">
 
     <script>
 
-        function camposVacios(){
-            var inputs = document.getElementById("inputuserName");
-            for (var i=0; i<inputs.length; i++) {
-                if(inputs[i]=""){
-                    inputs[i].style.background="red";
-                }
-                
+
+        var fallos ="";
+
+        function coincidenciaContrasenias(){
+            var password=document.getElementById("inputpassword").value;
+            var passwordRepeat=document.getElementById("inputpasswordConfirm").value;
+            if(password!=passwordRepeat){
+                alert("Las contraseñas no coinciden");
+                event.preventDefault();
             }
         }
+
+        function valoresCorrectos(){
+        
+        var userName=document.getElementById("inputuserName").value;
+        var email=document.getElementById("inputemail").value;
+        var password=document.getElementById("inputpassword").value;
+        var nombre=document.getElementById("inputnombre").value;
+        var age=document.getElementById("inputage").value;
+        var telephone=document.getElementById("inputtelephone").value;
+
+        if(userName.length>20){
+            fallos+=userName + "|";
+        }
+
+        if(email.length>25){
+            fallos+=email + "|";
+        }
+
+        if(password.length>15){
+            fallos+=password + "|";
+        }
+        if(age.length>99){
+            fallos+=age + "|";
+        }
+        if(telephone.length>12){
+            fallos+=telephone + "|";
+        }
+
+        
+        if(fallos.length>0){
+            alert("Estos valores no son correctos: " + fallos);
+            event.preventDefault();
+        }
+        }
+
     </script>
-    <form action="" method="$_POST">
+
+</head>
+<body>
+    <form action="" method="post">
         <ul>
-            <li>
+            <ol>
                 <label for="userName">User Name:</label>
                 <input type="text" name="userName" id="inputuserName">
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <label for="email">Email:</label>
-                <input type="email" placeholder="ejemplo@prueba.com" name="email" id="inputname">
-            </li>
-            <li>
+                <input type="email" placeholder="ejemplo@prueba.com" name="email" id="inputemail">
+            </ol>
+            <ol>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="inputpassword">
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <label for="passwordConfirm">Confirm Password:</label>
                 <input type="password" name="passwordConfirm" id="inputpasswordConfirm">
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <label for="name">Name:</label>
-                <input type="text" name="name" id="inputnomber">
-            </li>
-            <li>
+                <input type="text" name="name" id="inputnombre">
+            </ol>
+            <ol>
                 <label for="age">Age:</label>
                 <input type="number" min="0" max="99" name="age" id="inputage">
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <label for="telephoneNumber">Telephone:</label>
-                <input type="text" name="telephoneNumber" id="inputtelephoneNumber">
-            </li>
-            <li>
-                <button type="submit" name="create" onclick="camposVacios()">Create Account</button>
-                <button type="submit" name="return">Return</button>
-            </li>
+                <input type="text" name="telephoneNumber" id="inputtelephone">
+            </ol>
+            <ol>
+                <button type="submit" name="create" onclick="coincidenciaContrasenias();valoresCorrectos();">Create Account</button>
+                <button type="submit" name="volver">Return</button>
+            </ol>
         </ul>
     </form>
 </body>
 </html>
+
+
+

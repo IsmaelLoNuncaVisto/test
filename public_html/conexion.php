@@ -1,7 +1,7 @@
 <?php
 
-
-use mysqli_sql_exception;
+require("Usuario.php");
+use public_html\Usuario;
 
 class UsoBD
 {
@@ -37,60 +37,127 @@ class UsoBD
     Comprueba que exista el usuario. Error si existe
     En caso de Error regresa a la pagina de referencia
      */
-    public function aniadirUsuario($emailUsuario, $psswdUsuario, $nombreUsuario, $psswdRepetirContrasenia)
+
+     public function encriptadoPasword($password):string{
+        $hash_pasword= password_hash($password,PASSWORD_BCRYPT);
+        return $hash_pasword;
+     }
+
+     public function inyeccionCredenciales($arrayElementos):Usuario{
+        $arrayElementosInyectados=array() ;
+        for ($i=0; $i < count($arrayElementos); $i++) { 
+            $inyeccionElemento=mysqli_real_escape_string($this->conexion, $arrayElementos[$i]);
+           array_push($arrayElementosInyectados,$inyeccionElemento);
+        }
+
+        //HASH de la Contraseña
+        //$hash_pasword=$this->encriptadoPasword($$arrayElementos[2]);
+
+        $usuario =  new Usuario($arrayElementosInyectados[0],
+            $arrayElementosInyectados[1],
+            $arrayElementosInyectados[2],
+            $arrayElementosInyectados[3],
+            $arrayElementosInyectados[4],
+            $arrayElementosInyectados[5],
+            $arrayElementosInyectados[6]);
+
+        return $usuario;
+
+     }
+
+     //
+     public function administradorAniadirUsuario($arrayDatos):array{
+        if($this->cuantosUsuarios()==0){
+            array_push($arrayDatos,1);
+            return $arrayDatos;
+        }else{
+            array_push($arrayDatos,0);
+            return $arrayDatos;
+        }
+        
+     }
+
+     //CUENTA LA CANTIDAD DE USUARIOS QUE HAY EN LA TABLA usuario
+     public function cuantosUsuarios():int{
+        $sql="SELECT * FROM usuario";
+        $arrayUsuarios=mysqli_fetch_assoc(mysqli_query($this->conexion,$sql));
+        return count($arrayUsuarios);
+     }
+
+
+    public function aniadirUsuario($usuarioAniadir):bool
     {
-        //$emailValido = preg_match_all("/@prueba.com$/", $emailUsuario);
-        $emailValido = filter_var($emailUsuario, FILTER_VALIDATE_EMAIL);
-        try {
-            $usuarios = "SELECT * FROM usuario";
-            $resultado = mysqli_query($this->conexion, $usuarios);
-            $cnt = 0;
-            while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-                $cnt++;
-            }
-            if ($cnt == 0) {
-                $aniadirSQL = "INSERT INTO usuario(email,contrasenia,nombre,administrador) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario',1)";
-            } else {
-                $aniadirSQL = "INSERT INTO usuario(email,contrasenia,nombre,administrador) VALUES ('$emailUsuario','$psswdUsuario','$nombreUsuario',0)";
-            }
-            if (!mysqli_query($this->conexion, $aniadirSQL)) {
-                throw new mysqli_sql_exception("<script> alert ('Usuario ya existe');</script>"
-                    . "<script>window.location.href = document.referrer;</script>");
-            }
-            echo "<script> alert ('Usuario añadido');</script>"
-                . "<script>window.location.href = document.referrer;</script>";
-        } catch (mysqli_sql_exception $me) {
-            echo $me->getMessage();
-        } 
+       $usuario= $this->inyeccionCredenciales($this->administradorAniadirUsuario($usuarioAniadir));
+        
+        if(!$this->existeUsuario($usuario->getEmailUsuario())){
+            $sentenciaSQL="INSERT INTO usuario(userName,email,psswd,nombre,age,telephone,administrador) VALUES 
+            ('".$usuario->getUserNameUsuario()."',
+            '".$usuario->getEmailUsuario()."',
+            '".$usuario->getPasswordUsuario()."',
+            '".$usuario->getNombreUsuario()."',
+            ".$usuario->getAgeUsuario().",
+            '".$usuario->getTelephoneUsuario()."',
+            ".$usuario->getAdministrador().")";
+            mysqli_query($this->conexion,$sentenciaSQL);
+            return true;
+        }
+        return false;
     }
+
+    /*Acceso HASH contraseña*/
+
+    public function accesoHash($email):string{
+        $sql="SELECT psswd FROM usuario WHERE email = '$email'";
+        $result  = mysqli_query($this->conexion,$sql);
+        $row=mysqli_fetch_assoc($result);
+        $hash = $row['psswd'];
+        return $hash;
+    }
+
+    /*AccesoUsuario*/
+
+    public function accesoUsuario($emailUsuario,$psswdUsuario):bool{
+        $inyeccionEmail = mysqli_real_escape_string($this->conexion, $emailUsuario);
+        $inyeccionPsswd = mysqli_real_escape_string($this->conexion,$psswdUsuario);
+        $hash=$this->accesoHash($inyeccionEmail);
+        if(password_verify($inyeccionPsswd,$hash)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    /*Direccion de página*/
+
+    public function accesoPaginaAdministrador($emailUsuario):bool{
+        $inyeccionEmail = mysqli_real_escape_string($this->conexion, $emailUsuario);
+        $sentenciaSQL = "SELECT administrador FROM usuario WHERE email= '$inyeccionEmail'";
+        $result=mysqli_query($this->conexion,$sentenciaSQL);
+        if(mysqli_fetch_assoc($result)['administrador']==1){
+        return true;
+         }else{
+        return false;
+        }
+
+    }
+
 
     /*Elimina usuario a la BD
     Comprueba la forma correcta del email, Error al estar mal escrita
     Comprueba que exista el usuario. Error si no existe
     En caso de Error regresa a la pagina de referencia
      */
-    public function eliminarUsuario($emailUsuario)
+    public function eliminarUsuario($emailUsuario):bool
     {
-
-        try {
             $inyeccionEmail = mysqli_real_escape_string($this->conexion, $emailUsuario);
-            $mostrarUsuario = "SELECT email FROM usuario WHERE email= '$inyeccionEmail'";
-            $existenciaEmail = mysqli_query($this->conexion, $mostrarUsuario);
-            while ($fila = mysqli_fetch_assoc($existenciaEmail)) {
-                $email = $fila['email'];
+            if($this->existeUsuario($emailUsuario)){
+                $eliminarSQL = "DELETE FROM usuario WHERE email = '$inyeccionEmail'";
+                mysqli_query($this->conexion, $eliminarSQL);
+                return true;
+            }else{
+                return false;
             }
-            if ($email == "") {
-                throw new mysqli_sql_exception("<script> alert ('Usuario no existe');</script>"
-                    . "<script>window.location.href = document.referrer;</script>");
-            }
-            //$inyeccionNombre=mysqli_real_escape_string($this->conexion, $nombreUsuario);
-            $eliminarSQL = "DELETE FROM usuario WHERE email = '$inyeccionEmail'";
-            mysqli_query($this->conexion, $eliminarSQL);
-            echo "<script> alert ('Usuario eliminado');</script>"
-                . "<script>window.location.href = document.referrer;</script>";
-        } catch (mysqli_sql_exception $me) {
-            echo $me->getMessage();
-        }
     }
 
     /*Muestra a los Usuarios
@@ -103,58 +170,38 @@ class UsoBD
     //Devuelve array con los emails de los alumnos
     public function recogerEmailsUsuarios(): array
     {
-
         $sentenciaSQL = "SELECT email FROM usuario";
         $result = mysqli_query($this->conexion, $sentenciaSQL);
         while ($fila = mysqli_fetch_assoc($result)) {
             $array[] = $fila['email'];
         }
         return $array;
-
     }
 
     //Hace un select y luego un echo de los alumnos
-    public function mostrarUsuarios(): array
+    public function recogerUsuarios(): array
     {
-        
-        require("clases/Usuario.php");
         $mostrarSQL = "SELECT * FROM usuario";
         $resultado = mysqli_query($this->conexion, $mostrarSQL);
         while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-            $Usuario = new Usuario($fila['email'], $fila['contrasenia'], $fila['nombre'], $fila['administrador']);
+            $Usuario = new Usuario($fila['userName'],$fila['email'], $fila['psswd'], $fila['nombre'], $fila['age'],$fila['telephone'],$fila['administrador']);
             $array[] = $Usuario;
         }
         return $array;
-
     }
 
-    public function existeUsuario($emailUsuario, $psswdUsuario): bool
+    public function existeUsuario($emailUsuario): bool
     {
-        $emailValido = filter_var($emailUsuario, FILTER_VALIDATE_EMAIL);
-        try {
-
-
             $inyeccionEmail = mysqli_real_escape_string($this->conexion, $emailUsuario);
-
-            $mostrarUsuario = "SELECT email FROM usuario WHERE email= '$inyeccionEmail'AND contrasenia='$psswdUsuario'";
-            $existenciaEmail = mysqli_query($this->conexion, $mostrarUsuario);
-
-            while ($fila = mysqli_fetch_assoc($existenciaEmail)) {
-                $email = $fila['email'];
+            $mostrarUsuario = "SELECT email FROM usuario WHERE email= '$inyeccionEmail'";
+            $existenciaUsuario = mysqli_query($this->conexion, $mostrarUsuario);
+            while ($fila = mysqli_fetch_assoc($existenciaUsuario)) {
+                if($emailUsuario==$fila["email"]){
+                    return true;
+                }
             }
-
-            if ($email == "") {
-
-                throw new mysqli_sql_exception("<script> alert ('Usuario no existe');</script>"
-                    . "<script>window.location.href = document.referrer;</script>");
-            }
-
-            return true;
-
-        } catch (mysqli_sql_exception $me) {
-            echo $me->getMessage();
             return false;
-        } 
+        
     }
 
     public function controlAdministrador($emailUsuario): int
@@ -169,32 +216,40 @@ class UsoBD
     public function usuarioEscogido($emailUsuario): Usuario
     {
 
-        $email = '';
-        $password = '';
-        $nombre = '';
-        $adminitrador = 0;
-
-        $sentenciaSQL = "SELECT * FROM usuario WHERE email LIKE '$emailUsuario'";
+        $sentenciaSQL = "SELECT userName,psswd,nombre,age,telephone,administrador FROM usuario WHERE email LIKE '$emailUsuario'";
         $result = mysqli_query($this->conexion, $sentenciaSQL);
-        while ($fila = mysqli_fetch_assoc($result)) {
-            $email = $fila['email'];
-            $password = $fila['contrasenia'];
+            while($fila=mysqli_fetch_assoc($result)){
+            $userName=$fila['userName'];
+            $email = $emailUsuario;
+            $password = $fila['psswd'];
             $nombre = $fila['nombre'];
+            $age=$fila['age'];
+            $telephone=$fila['telephone'];
             $adminitrador = $fila['administrador'];
         }
+        
 
-        $Usuario = new Usuario($email, $password, $nombre, $adminitrador);
+        $Usuario = new Usuario($userName,$email, $password, $nombre,$age,$telephone, $adminitrador);
 
         return $Usuario;
     }
 
-    public function actualizarDatosUsuario($emailAntiguo,$emailNuevo,$passwordNueva,$nombreNuevo,$administradorNuevo){
-         $sentenciaSQL="UPDATE usuario SET email='$emailNuevo', 
-                    contrasenia='$passwordNueva', 
-                    nombre='$nombreNuevo',
-                    administrador= $administradorNuevo
+    public function actualizarDatosUsuario($emailAntiguo,$actualizarUsuario):bool{
+
+        $usuario=$this->inyeccionCredenciales($actualizarUsuario);         
+         $sentenciaSQL="UPDATE usuario SET userName = '".$usuario->getUserNameUsuario()."',
+                    email='".$usuario->getEmailUsuario()."', 
+                    psswd='".$usuario->getPasswordUsuario()."', 
+                    nombre='".$usuario->getNombreUsuario()."',
+                    age='".$usuario->getAgeUsuario()."',
+                    telephone='".$usuario->getTelephoneUsuario()."',
+                    administrador= ".$usuario->getAdministrador()."
                     WHERE email='$emailAntiguo'";
-        mysqli_query($this->conexion,$sentenciaSQL);        
+        if(mysqli_query($this->conexion,$sentenciaSQL)){
+         return true;
+        }else{
+            return false;
+        }
     }
 
 }
