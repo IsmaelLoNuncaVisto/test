@@ -1,6 +1,6 @@
 <?php
 
-//AccionBotones
+
 $crearUsuario=isset($_POST["create"]);
 $volver=isset($_POST["volver"]);
 
@@ -19,12 +19,29 @@ $conexion= new UsoBD;
 $conexion->establecerConexion();
 
 if(isset($_POST["create"])){
-    /*AL dar al botón se debe crear un objeto USUARIO
-    * por lo que primero confirmamos las condiciones para crearlo
-    + Pasamos ese objeto a la conexión y lo intentamos añadir
-    + si ya existe un usuario con  mismo 'userName' o 'email'
-    + impedimos que se cree
-    */
+    
+   require 'vendor/autoload.php';
+   require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+
+   $mail=new \PHPMailer\PHPMailer\PHPMailer();
+
+   $mail->isSMTP();
+   $mail->Host = 'smtp.example.com';
+   $mail->SMTPAuth=true;
+   $mail->Username='user@example.com';
+   $mail->Password='password';
+   $mail->SMTPSecure='ssl';
+   $mail->Port=465;
+
+   $mail->setFrom('ismael@lonuncavisto.com','Remitente');
+   $mail->addAddress($email);
+   $mail->Subject='Creación contraseña';
+   $mail->Body='Se creo una cuenta en: wwwdes.ismael.lonuncavisto.org';
+
+   if(!$mail->send()){
+    echo 'Error al enviar correo electrónico: ' . $mail->ErrorInfo;
+   }
+
     //Primero creamos el HASH porque al mandar un array no pasaría la encriptación y habría que
     //regenerar el array a la hora de ingresar las credenciales
     $hash=$conexion->encriptadoPasword($psswd);
@@ -58,6 +75,7 @@ $conexion->cerrarConexion();
 
 
         var fallos ="";
+        
 
         function coincidenciaContrasenias(){
             var password=document.getElementById("inputpassword").value;

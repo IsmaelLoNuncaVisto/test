@@ -211,7 +211,7 @@ Stack trace:
 [24-Apr-2023 13:55:55 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'clases\conexion\UsoBD' not found in /home/ismael/desarrollo/proyectos/test/public_html/ficheros_php/accesoUsuario.php:13
 Stack trace:
 #0 {main}
-  thrown in /home/ismael/desarrollo/proyectos/test/public_html/ficheros_php/accesoUsuario.php on line 13
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/ficheros_php/accesoUsuario.php on line 1pwd3
 [24-Apr-2023 13:59:34 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'clases\conexion\UsoBD' not found in /home/ismael/desarrollo/proyectos/test/public_html/ficheros_php/accesoUsuario.php:13
 Stack trace:
 #0 {main}
@@ -1912,3 +1912,106 @@ Stack trace:
 [03-May-2023 10:37:51 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/paginaAdministrador1.php on line 27
 [03-May-2023 10:38:48 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
 [03-May-2023 10:38:48 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[03-May-2023 12:51:56 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 12:51:56 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 12:51:56 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 12:51:56 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 14
+[03-May-2023 12:51:56 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 15
+[03-May-2023 12:51:56 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 12:52:38 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php:28
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 28
+[03-May-2023 12:52:41 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 12:52:41 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 12:52:41 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 12:52:41 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 14
+[03-May-2023 12:52:41 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 15
+[03-May-2023 12:52:41 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 12:53:12 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php:28
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 28
+[03-May-2023 12:53:45 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 12:53:45 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 12:53:45 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 12:53:45 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 14
+[03-May-2023 12:53:45 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 15
+[03-May-2023 12:53:45 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 12:54:03 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php:28
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 28
+[03-May-2023 12:55:25 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 12:55:25 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 12:55:25 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 12:55:25 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 14
+[03-May-2023 12:55:25 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 15
+[03-May-2023 12:55:25 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 12:55:34 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php:28
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 28
+[03-May-2023 13:12:11 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 13:12:11 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 13:12:11 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 13:12:11 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 14
+[03-May-2023 13:12:11 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 15
+[03-May-2023 13:12:11 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 13:13:33 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php:28
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 28
+[03-May-2023 14:03:59 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 8
+[03-May-2023 14:03:59 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 9
+[03-May-2023 14:03:59 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 10
+[03-May-2023 14:03:59 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 14:03:59 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 14:03:59 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 14:04:14 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php:25
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 25
+[03-May-2023 14:04:54 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 8
+[03-May-2023 14:04:54 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 9
+[03-May-2023 14:04:54 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 10
+[03-May-2023 14:04:54 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 14:04:54 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 14:04:54 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 14:05:07 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php:25
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 25
+[03-May-2023 14:07:58 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 8
+[03-May-2023 14:07:58 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 9
+[03-May-2023 14:07:58 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 10
+[03-May-2023 14:07:58 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 14:07:58 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 14:07:58 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 14:08:11 Europe/Madrid] PHP Warning:  require(vendor/phpmailer/phpmailer/src/PHPMailer.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 24
+[03-May-2023 14:08:11 Europe/Madrid] PHP Warning:  require(vendor/phpmailer/phpmailer/src/PHPMailer.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 24
+[03-May-2023 14:08:11 Europe/Madrid] PHP Fatal error:  require(): Failed opening required 'vendor/phpmailer/phpmailer/src/PHPMailer.php' (include_path='.:/usr/share/php') in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 24
+[03-May-2023 14:13:43 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 8
+[03-May-2023 14:13:43 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 9
+[03-May-2023 14:13:43 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 10
+[03-May-2023 14:13:43 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 14:13:43 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 14:13:43 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 14:14:12 Europe/Madrid] PHP Warning:  require(vendor/phpmailer/phpmailer/src/PHPMailer.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 24
+[03-May-2023 14:14:12 Europe/Madrid] PHP Warning:  require(vendor/phpmailer/phpmailer/src/PHPMailer.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 24
+[03-May-2023 14:14:12 Europe/Madrid] PHP Fatal error:  require(): Failed opening required 'vendor/phpmailer/phpmailer/src/PHPMailer.php' (include_path='.:/usr/share/php') in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 24
+[03-May-2023 14:31:34 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 8
+[03-May-2023 14:31:34 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 9
+[03-May-2023 14:31:34 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 10
+[03-May-2023 14:31:34 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 11
+[03-May-2023 14:31:34 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 12
+[03-May-2023 14:31:34 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 13
+[03-May-2023 14:32:06 Europe/Madrid] PHP Fatal error:  Uncaught Error: Class 'PHPMailer\PHPMailer\SMTP' not found in /home/ismael/desarrollo/proyectos/test/public_html/vendor/phpmailer/phpmailer/src/PHPMailer.php:1982
+Stack trace:
+#0 /home/ismael/desarrollo/proyectos/test/public_html/vendor/phpmailer/phpmailer/src/PHPMailer.php(2103): PHPMailer\PHPMailer\PHPMailer->getSMTPInstance()
+#1 /home/ismael/desarrollo/proyectos/test/public_html/vendor/phpmailer/phpmailer/src/PHPMailer.php(2019): PHPMailer\PHPMailer\PHPMailer->smtpConnect()
+#2 /home/ismael/desarrollo/proyectos/test/public_html/vendor/phpmailer/phpmailer/src/PHPMailer.php(1678): PHPMailer\PHPMailer\PHPMailer->smtpSend()
+#3 /home/ismael/desarrollo/proyectos/test/public_html/vendor/phpmailer/phpmailer/src/PHPMailer.php(1516): PHPMailer\PHPMailer\PHPMailer->postSend()
+#4 /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php(41): PHPMailer\PHPMailer\PHPMailer->send()
+#5 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1982
