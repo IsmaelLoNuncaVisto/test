@@ -121,12 +121,14 @@ if(fallos.length>0){
     event.preventDefault();
 }
 }
-
+/*
 function camposVacios(){
             if(userName==""||email==""||password==""||name==""||age==""||telephone==""||administrador==""){
                 alert("Hay algún campo vacío");
+                event.preventDefault();
             }
         }
+        */
 
 </script>
 </head>

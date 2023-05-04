@@ -79,9 +79,7 @@ $conexion->cerrarConexion();
     <link rel="stylesheet" href="inicio.css">
 
     <script>
-
-
-        var fallos ="";
+        function validarFormulario(){
         var userName=document.getElementById("inputuserName").value;
         var email=document.getElementById("inputemail").value;
         var password=document.getElementById("inputpassword").value;
@@ -89,16 +87,21 @@ $conexion->cerrarConexion();
         var nombre=document.getElementById("inputnombre").value;
         var age=document.getElementById("inputage").value;
         var telephone=document.getElementById("inputtelephone").value;
+        var fallos ="";
+        
+        /*
+        if(userName===''||email===''||password===''||passwordRepeat===''||name===''||telephone===''){
+                alert("Hay algún campo vacío");
+                event.preventDefault();
+        }
+        */
         
 
-        function coincidenciaContrasenias(){            
-            if(password!=passwordRepeat){
+        if(password!=passwordRepeat){
                 alert("Las contraseñas no coinciden");
                 event.preventDefault();
             }
-        }
 
-        function valoresCorrectos(){
         if(userName.length>20){
             fallos+=userName + "|";
         }
@@ -120,12 +123,6 @@ $conexion->cerrarConexion();
             alert("Estos valores no son correctos: " + fallos);
             event.preventDefault();
         }
-        }
-
-        function camposVacios(){
-            if(userName==""||email==""||password==""||passwordRepeat==""||name==""||age==""||telephone==""){
-                alert("Hay algún campo vacío");
-            }
         }
 
     </script>
@@ -163,7 +160,7 @@ $conexion->cerrarConexion();
                 <input type="text" name="telephoneNumber" id="inputtelephone">
             </ol>
             <ol>
-                <button type="submit" name="create" onclick="camposVacios();coincidenciaContrasenias();valoresCorrectos();">Create Account</button>
+                <button type="submit" name="create" onclick="validarFormulario();">Create Account</button>
                 <button type="submit" name="volver">Return</button>
             </ol>
         </ul>
