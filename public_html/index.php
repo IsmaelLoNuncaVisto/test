@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . "/vendor/autoload.php";
 
 $email=$_POST["email"];
 $password=$_POST["password"];

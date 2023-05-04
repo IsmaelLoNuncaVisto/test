@@ -2134,3 +2134,19 @@ Stack trace:
 [04-May-2023 09:52:41 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
 [04-May-2023 09:52:41 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
 [04-May-2023 09:53:02 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/paginaAdministrador1.php on line 28
+[04-May-2023 12:34:33 Europe/Madrid] PHP Warning:  require_once(/home/ismael/desarrollo/proyectos/test/public_html/vendor/autoload.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:34:33 Europe/Madrid] PHP Fatal error:  require_once(): Failed opening required '/home/ismael/desarrollo/proyectos/test/public_html/vendor/autoload.php' (include_path='.:/usr/share/php') in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:34:40 Europe/Madrid] PHP Warning:  require_once(/home/ismael/desarrollo/proyectos/test/public_html/vendor/autoload.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:34:40 Europe/Madrid] PHP Fatal error:  require_once(): Failed opening required '/home/ismael/desarrollo/proyectos/test/public_html/vendor/autoload.php' (include_path='.:/usr/share/php') in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:35:05 Europe/Madrid] PHP Warning:  require_once(/home/ismael/desarrollo/proyectos/test/public_html../vendor/autoload.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:35:05 Europe/Madrid] PHP Fatal error:  require_once(): Failed opening required '/home/ismael/desarrollo/proyectos/test/public_html../vendor/autoload.php' (include_path='.:/usr/share/php') in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:35:28 Europe/Madrid] PHP Warning:  require_once(/home/ismael/desarrollo/proyectos/test/public_html../vendor/autoload.php): failed to open stream: No such file or directory in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:35:28 Europe/Madrid] PHP Fatal error:  require_once(): Failed opening required '/home/ismael/desarrollo/proyectos/test/public_html../vendor/autoload.php' (include_path='.:/usr/share/php') in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 2
+[04-May-2023 12:35:43 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 3
+[04-May-2023 12:35:43 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 12:35:49 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[04-May-2023 12:35:49 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 17
+[04-May-2023 12:35:49 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[04-May-2023 12:35:49 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[04-May-2023 12:35:49 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[04-May-2023 12:35:49 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21

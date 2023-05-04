@@ -4,10 +4,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
-require 'vendor/autoload.php';
-require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require 'vendor/phpmailer/phpmailer/src/Exception.php';
-require 'vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../vendor/autoload.php';
+require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../vendor/phpmailer/phpmailer/src/Exception.php';
+require '../vendor/phpmailer/phpmailer/src/SMTP.php';
 
 require ('conexion.php');
 $conexion=new UsoBD();
@@ -48,8 +48,8 @@ function mandarCorreo($email,$token){
  
     $mail->setFrom('ismael@lonuncavisto.com','Remitente');
     $mail->addAddress($email);
-    $mail->Subject='Creación contraseña';
-    $mail->Body="<a href='https://wwwdes.ismael.lonuncavisto.org/establecerPassword.php'>Establecer Nueva Contraseña</a> \n El token que debe ingresar es: " . $token;
+    $mail->Subject='Recuperación contraseña';
+    $mail->Body="https://wwwdes.ismael.lonuncavisto.org/establecerPassword.php Establecer Nueva Contraseña</a> \n El token que debe ingresar es: " . $token;
  
     if(!$mail->send()){
      echo 'Error al enviar correo electrónico.';

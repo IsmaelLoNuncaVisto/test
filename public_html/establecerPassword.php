@@ -11,6 +11,8 @@
         if($conexion->comprobarValidezToken($token)){
             $conexion->restablecerPassword($password,$token);
             echo "Se ha restablecido la contraseña";
+            header ("Location: https://wwwdes.ismael.lonuncavisto.org");
+            exit;
         }else{
             echo "El token ha expirado";
         }
