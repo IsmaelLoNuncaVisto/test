@@ -70,7 +70,7 @@ $conexion->cerrarConexion();
             <button type="submit" name="login" onclick="camposVacios()">Login</button>
         </ol>
         <ol>
-            <a href="">¿Olvidó su contraseña?</a>
+            <a href="recuperarPassword.php">¿Olvidó su contraseña?</a>
         </ol>
         <ol>
             <a href="crearUsuario.php">Crear una nueva cuenta</a>

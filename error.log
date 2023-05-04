@@ -2015,3 +2015,122 @@ Stack trace:
 #4 /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php(41): PHPMailer\PHPMailer\PHPMailer->send()
 #5 {main}
   thrown in /home/ismael/desarrollo/proyectos/test/public_html/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1982
+[03-May-2023 14:35:01 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 14:35:01 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 17
+[03-May-2023 14:35:01 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[03-May-2023 14:35:01 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[03-May-2023 14:35:01 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[03-May-2023 14:35:01 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21
+[03-May-2023 16:03:10 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[03-May-2023 16:03:10 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[03-May-2023 16:03:20 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/paginaAdministrador1.php on line 26
+[03-May-2023 16:03:24 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/paginaAdministrador1.php on line 26
+[03-May-2023 16:03:26 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/paginaAdministrador1.php on line 26
+[03-May-2023 16:03:26 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[03-May-2023 16:03:26 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[03-May-2023 16:03:27 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 16:03:27 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 17
+[03-May-2023 16:03:27 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[03-May-2023 16:03:27 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[03-May-2023 16:03:27 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[03-May-2023 16:03:27 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21
+[03-May-2023 16:23:26 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[03-May-2023 16:23:26 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[03-May-2023 16:23:38 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 16:23:38 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 17
+[03-May-2023 16:23:38 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[03-May-2023 16:23:38 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[03-May-2023 16:23:38 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[03-May-2023 16:23:38 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21
+[03-May-2023 16:24:02 Europe/Madrid] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 84
+[03-May-2023 16:28:39 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[03-May-2023 16:28:39 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[03-May-2023 16:43:12 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[03-May-2023 16:43:12 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[03-May-2023 16:43:12 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[03-May-2023 16:43:12 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21
+[03-May-2023 16:43:12 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 22
+[03-May-2023 16:43:12 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 23
+[03-May-2023 17:54:05 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[03-May-2023 17:54:05 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 17
+[03-May-2023 17:54:05 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[03-May-2023 17:54:05 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[03-May-2023 17:54:05 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[03-May-2023 17:54:05 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21
+[04-May-2023 00:15:24 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 00:15:24 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 00:15:29 Europe/Madrid] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:16:25 Europe/Madrid] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:17:08 Europe/Madrid] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:17:59 Europe/Madrid] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:18:41 Europe/Madrid] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:19:27 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:20:41 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:20:43 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[04-May-2023 00:20:43 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 17
+[04-May-2023 00:20:43 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[04-May-2023 00:20:43 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[04-May-2023 00:20:43 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[04-May-2023 00:20:43 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21
+[04-May-2023 00:21:39 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 00:21:39 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 00:21:40 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:22:00 Europe/Madrid] PHP Notice:  Undefined index: token in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 3
+[04-May-2023 00:22:00 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 4
+[04-May-2023 00:22:41 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 00:22:41 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 00:22:59 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 00:22:59 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 00:26:56 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 00:27:33 Europe/Madrid] PHP Notice:  Undefined index: token in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 3
+[04-May-2023 00:27:33 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 4
+[04-May-2023 00:27:46 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 00:27:46 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 09:08:43 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 09:08:43 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 09:08:52 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 09:09:19 Europe/Madrid] PHP Notice:  Undefined index: token in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 3
+[04-May-2023 09:09:19 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 4
+[04-May-2023 09:11:18 Europe/Madrid] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 276
+[04-May-2023 09:11:18 Europe/Madrid] PHP Notice:  Trying to access array offset on value of type null in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 276
+[04-May-2023 09:12:01 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 09:12:01 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 09:12:36 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/recuperarPassword.php on line 16
+[04-May-2023 09:13:43 Europe/Madrid] PHP Notice:  Undefined index: token in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 3
+[04-May-2023 09:13:43 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 4
+[04-May-2023 09:14:00 Europe/Madrid] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 276
+[04-May-2023 09:14:00 Europe/Madrid] PHP Notice:  Trying to access array offset on value of type null in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 276
+[04-May-2023 09:15:54 Europe/Madrid] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 276
+[04-May-2023 09:15:54 Europe/Madrid] PHP Notice:  Trying to access array offset on value of type null in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 276
+[04-May-2023 09:24:15 Europe/Madrid] PHP Notice:  Undefined index: token in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 3
+[04-May-2023 09:24:15 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/establecerPassword.php on line 4
+[04-May-2023 09:25:01 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 09:25:01 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 09:25:09 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 09:25:09 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 09:28:57 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 09:28:57 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 09:52:20 Europe/Madrid] PHP Notice:  Undefined index: userName in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 16
+[04-May-2023 09:52:20 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 17
+[04-May-2023 09:52:20 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 18
+[04-May-2023 09:52:20 Europe/Madrid] PHP Notice:  Undefined index: name in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 19
+[04-May-2023 09:52:20 Europe/Madrid] PHP Notice:  Undefined index: age in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 20
+[04-May-2023 09:52:20 Europe/Madrid] PHP Notice:  Undefined index: telephoneNumber in /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php on line 21
+[04-May-2023 09:52:41 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 4
+[04-May-2023 09:52:41 Europe/Madrid] PHP Notice:  Undefined index: password in /home/ismael/desarrollo/proyectos/test/public_html/index.php on line 5
+[04-May-2023 09:53:02 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/paginaAdministrador1.php on line 28

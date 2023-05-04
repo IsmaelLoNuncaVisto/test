@@ -4,17 +4,7 @@ session_start();
 if(!isset($_SESSION["administrador"])){
     header("Location: https://wwwdes.ismael.lonuncavisto.org");
     exit;
-}else{
-    $inactive=30;
-    if(isset($_SESSION["finSesion"])){
-        $terminarSesion=time()-$_SESSION["finSesion"];
-        if($terminarSesion>$inactive){
-            session_destroy();
-            header("Location: https://wwwdes.ismael.lonuncavisto.org");
-            exit;
-        }
-        $_SESSION['finSesion']=time();
-    }
+
 }
 
 ?>

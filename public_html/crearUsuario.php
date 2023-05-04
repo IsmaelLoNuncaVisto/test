@@ -1,4 +1,12 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
+require 'vendor/autoload.php';
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/Exception.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
 
 $crearUsuario=isset($_POST["create"]);
@@ -20,18 +28,17 @@ $conexion->establecerConexion();
 
 if(isset($_POST["create"])){
     
-   require 'vendor/autoload.php';
-   require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 
-   $mail=new \PHPMailer\PHPMailer\PHPMailer();
+
+   $mail=new PHPMailer();
 
    $mail->isSMTP();
-   $mail->Host = 'smtp.example.com';
+   $mail->Host = 'imap.lonuncavisto.com';
    $mail->SMTPAuth=true;
-   $mail->Username='user@example.com';
-   $mail->Password='password';
-   $mail->SMTPSecure='ssl';
-   $mail->Port=465;
+   $mail->Username='ismael@lonuncavisto.com';
+   $mail->Password='hd29823bd0.9aqP';
+   $mail->SMTPSecure='STARTTLS';
+   $mail->Port=587;
 
    $mail->setFrom('ismael@lonuncavisto.com','Remitente');
    $mail->addAddress($email);

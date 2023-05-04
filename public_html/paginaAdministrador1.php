@@ -1,9 +1,11 @@
 <?php
 
+$VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
+
 session_start();
 
 if(!isset($_SESSION["administrador"])){
-    header("Location: https://wwwdes.ismael.lonuncavisto.org");
+    header($VUELTA_PAG_PRINC);
     exit;
 }else{
     $inactive=30;
@@ -11,7 +13,7 @@ if(!isset($_SESSION["administrador"])){
         $terminarSesion=time()-$_SESSION["finSesion"];
         if($terminarSesion>$inactive){
             session_destroy();
-            header("Location: https://wwwdes.ismael.lonuncavisto.org");
+            header($VUELTA_PAG_PRINC);
             exit;
         }
         $_SESSION['finSesion']=time();
@@ -27,7 +29,7 @@ $email=$_POST['email'];
 
 if(isset($_POST['volver'])){
     session_destroy();
-    header("Location: https://wwwdes.ismael.lonuncavisto.org");
+    header($VUELTA_PAG_PRINC);
     exit;
 }
 

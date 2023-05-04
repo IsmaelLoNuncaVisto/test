@@ -67,7 +67,7 @@ class UsoBD
 
      //
      public function administradorAniadirUsuario($arrayDatos):array{
-        if($this->cuantosUsuarios()==0){
+        if($this->cuantosUsuarios()!=0){
             array_push($arrayDatos,1);
             return $arrayDatos;
         }else{
@@ -81,7 +81,11 @@ class UsoBD
      public function cuantosUsuarios():int{
         $sql="SELECT * FROM usuario";
         $arrayUsuarios=mysqli_fetch_assoc(mysqli_query($this->conexion,$sql));
-        return count($arrayUsuarios);
+        if($arrayUsuarios==null){
+            return 1;
+        }
+        return 0;
+        
      }
 
 
@@ -250,6 +254,37 @@ class UsoBD
         }else{
             return false;
         }
+    }
+
+    public function recuperarPassword($email,$token,$expiracion){
+        $sql="UPDATE usuario SET token='$token', expiracion='$expiracion' WHERE email = '$email'";
+        mysqli_query($this->conexion,$sql);
+    }
+
+    public function restablecerPassword($password,$token){
+
+        $hash=$this->encriptadoPasword($password);
+
+        $sql="UPDATE usuario SET psswd='$hash' WHERE token='$token'";
+        mysqli_query($this->conexion,$sql);
+        $this->borrarToken($token);
+
+    }
+
+    public function comprobarValidezToken($token):bool{
+        $sql="SELECT COUNT(*) FROM usuario WHERE token = '$token' AND expiracion >= NOW()";
+        $resultado = mysqli_query($this->conexion,$sql);
+        $valido = (mysqli_fetch_array($resultado)[0]>0);
+        if($valido){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function borrarToken($token){
+        $sql="UPDATE usuario SET expiracion='0000-00-00 00:00:00', token='' WHERE token='$token'";
+        mysqli_query($this->conexion,$sql);
     }
 
 }
