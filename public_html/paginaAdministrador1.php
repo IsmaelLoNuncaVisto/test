@@ -1,8 +1,9 @@
 <?php
 
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
+$options =array('lifetime'=>1800, 'secure'=>true);
 
-session_start();
+session_start($options);
 
 if(!isset($_SESSION["administrador"])){
     header($VUELTA_PAG_PRINC);

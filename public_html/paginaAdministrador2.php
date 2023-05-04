@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+$options =array('lifetime'=>1800, 'secure'=>true);
+
+session_start($options);
 if(!isset($_SESSION["administrador"])){
     header("Location: https://wwwdes.ismael.lonuncavisto.org");
     exit;
