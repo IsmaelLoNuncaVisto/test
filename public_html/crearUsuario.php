@@ -82,11 +82,16 @@ $conexion->cerrarConexion();
 
 
         var fallos ="";
+        var userName=document.getElementById("inputuserName").value;
+        var email=document.getElementById("inputemail").value;
+        var password=document.getElementById("inputpassword").value;
+        var passwordRepeat=document.getElementById("inputpasswordConfirm").value;
+        var nombre=document.getElementById("inputnombre").value;
+        var age=document.getElementById("inputage").value;
+        var telephone=document.getElementById("inputtelephone").value;
         
 
-        function coincidenciaContrasenias(){
-            var password=document.getElementById("inputpassword").value;
-            var passwordRepeat=document.getElementById("inputpasswordConfirm").value;
+        function coincidenciaContrasenias(){            
             if(password!=passwordRepeat){
                 alert("Las contraseñas no coinciden");
                 event.preventDefault();
@@ -94,14 +99,6 @@ $conexion->cerrarConexion();
         }
 
         function valoresCorrectos(){
-        
-        var userName=document.getElementById("inputuserName").value;
-        var email=document.getElementById("inputemail").value;
-        var password=document.getElementById("inputpassword").value;
-        var nombre=document.getElementById("inputnombre").value;
-        var age=document.getElementById("inputage").value;
-        var telephone=document.getElementById("inputtelephone").value;
-
         if(userName.length>20){
             fallos+=userName + "|";
         }
@@ -119,12 +116,16 @@ $conexion->cerrarConexion();
         if(telephone.length>12){
             fallos+=telephone + "|";
         }
-
-        
         if(fallos.length>0){
             alert("Estos valores no son correctos: " + fallos);
             event.preventDefault();
         }
+        }
+
+        function camposVacios(){
+            if(userName==""||email==""||password==""||passwordRepeat==""||name==""||age==""||telephone==""){
+                alert("Hay algún campo vacío");
+            }
         }
 
     </script>
@@ -162,7 +163,7 @@ $conexion->cerrarConexion();
                 <input type="text" name="telephoneNumber" id="inputtelephone">
             </ol>
             <ol>
-                <button type="submit" name="create" onclick="coincidenciaContrasenias();valoresCorrectos();">Create Account</button>
+                <button type="submit" name="create" onclick="camposVacios();coincidenciaContrasenias();valoresCorrectos();">Create Account</button>
                 <button type="submit" name="volver">Return</button>
             </ol>
         </ul>

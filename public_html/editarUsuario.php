@@ -122,6 +122,12 @@ if(fallos.length>0){
 }
 }
 
+function camposVacios(){
+            if(userName==""||email==""||password==""||name==""||age==""||telephone==""||administrador==""){
+                alert("Hay algún campo vacío");
+            }
+        }
+
 </script>
 </head>
 <body>
@@ -161,7 +167,7 @@ if(fallos.length>0){
                 </td>
         </tr>
         <tr>
-        <button type="submit" name="actualizar" onclick="return confirm('¿Desea actualizar este usuario?')">Actualizar</button>
+        <button type="submit" name="actualizar" onclick="camposVacios();valoresCorrectos();confirm('¿Desea actualizar este usuario?')">Actualizar</button>
         <button type="submit" name="cancelar">Cancelar</button>
         <button type="submit" name="cerrarSesion">CerrarSesión</button>
         </tr>
