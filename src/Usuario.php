@@ -1,6 +1,6 @@
 <?php
 
-    namespace public_html;
+    namespace src;
 
     class Usuario{
         private  string $userNameUsuario;
