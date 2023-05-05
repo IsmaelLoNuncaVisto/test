@@ -1,13 +1,14 @@
 <?php
 
-    $token=$_POST["token"];
-    $password=$_POST["password"];
+
 
     require "conexion.php";
     $conexion = new UsoBD();
     $conexion->establecerConexion();
 
     if(isset($_POST["restablecerPassword"])){
+        $token=$_POST["token"];
+        $password=$_POST["password"];
         if($conexion->comprobarValidezToken($token)){
             $conexion->restablecerPassword($password,$token);
             echo "Se ha restablecido la contraseña";

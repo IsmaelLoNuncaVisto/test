@@ -1,13 +1,18 @@
 <?php
 
-$email=$_POST["email"];
-$password=$_POST["password"];
+$options =array('lifetime'=>1800, 'secure'=>true);
+
+
 
 require("conexion.php");
 $conexion=new UsoBD;
 $conexion->establecerConexion();
 
 if(isset($_POST["login"])){
+    
+    $email=$_POST["email"];
+    $password=$_POST["password"];
+
     if($conexion->accesoUsuario($email,$password)){
         if($conexion->accesoPaginaAdministrador($email)){
             session_start();
@@ -40,10 +45,12 @@ $conexion->cerrarConexion();
 
     <script>
     function camposVacios(){
+        
         var email=document.getElementById("email").value;
         var password=document.getElementById("password").value;
         if(email==""||password==""){
             alert("Algunos de los parámetros está vacío");
+            event.preventDefault();
         }
         
     }
@@ -64,7 +71,7 @@ $conexion->cerrarConexion();
         <ol>
             <label for="password">Pasword:</label>
             <input type="password" name="password" id="password">
-</ol>
+        </ol>
         <ol>
             <button type="submit" name="login" onclick="camposVacios()">Login</button>
         </ol>

@@ -2,7 +2,9 @@
 
 $options =array('lifetime'=>1800, 'secure'=>true);
 
-session_start($options);
+session_set_cookie_params(1800);
+
+session_start();
 if(!isset($_SESSION["administrador"])){
     header("Location: https://wwwdes.ismael.lonuncavisto.org");
     exit;
@@ -26,8 +28,7 @@ $conexion->establecerConexion();
 
 $usuarios=$conexion->recogerUsuarios();
 
-$userNameUsuario=$_POST['userName'];
-$emailUsuario=$_POST['email'];
+
 
 if(isset($_POST['volver'])){
     session_destroy();
@@ -41,12 +42,13 @@ if(isset($_POST['mostrarTodo'])){
 }
 
 if(isset($_POST['editar'])){
-    header("Location: https://wwwdes.ismael.lonuncavisto.org/editarUsuario.php");
+    $email=$_POST['email'];
+    header("Location: https://wwwdes.ismael.lonuncavisto.org/editarUsuario.php?email=$email");
     exit;
 }
 
 if(isset($_POST['eliminar'])){
-
+    $emailUsuario=$_POST['email'];
     if($conexion->eliminarUsuario($emailUsuario)){
         echo "Usuario eliminado <p></p>";
         header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador2.php");

@@ -1,46 +1,35 @@
 <?php
 
+session_set_cookie_params(1800);
 
-    session_start();
+session_start();
 
-    session_start();
 if(!isset($_SESSION["administrador"])){
     header("Location: https://wwwdes.ismael.lonuncavisto.org");
     exit;
-}else{
-    $inactive=30;
-    if(isset($_SESSION["finSesion"])){
-        $terminarSesion=time()-$_SESSION["finSesion"];
-        if($terminarSesion>$inactive){
-            session_destroy();
-            header("Location: https://wwwdes.ismael.lonuncavisto.org");
-            exit;
-        }
-        $_SESSION['finSesion']=time();
-    }
 }
 
-    $email=$_GET['email'];
 
     require("conexion.php");
     $conexion=new UsoBD;
     $conexion->establecerConexion();
 
 
-
+    $email=$_GET['email'];
     $usuario=$conexion->usuarioEscogido($email);
 
     
 
-    $userName=$_POST['userName'];
-    $emailActualizar=$_POST['email'];
-    $password=$_POST['psswd'];
-    $name=$_POST['name'];
-    $age=$_POST['age'];
-    $telephone=$_POST['telephone'];
-    $administrador=$_POST['administrador'];
+
 
     if(isset($_POST["actualizar"])){
+        $userName=$_POST['userName'];
+        $emailActualizar=$_POST['email'];
+        $password=$_POST['psswd'];
+        $name=$_POST['name'];
+        $age=$_POST['age'];
+        $telephone=$_POST['telephone'];
+        $administrador=$_POST['administrador'];
         $crearUsuario=array($userName,$emailActualizar,$password,$name,$age,$telephone,$administrador);
         if($conexion->actualizarDatosUsuario($email,$crearUsuario)){
             echo "Usuario actualizado";

@@ -3,22 +3,14 @@
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
 $options =array('lifetime'=>1800, 'secure'=>true);
 
-session_start($options);
+
+session_set_cookie_params(1800);
+
+session_start();
 
 if(!isset($_SESSION["administrador"])){
     header($VUELTA_PAG_PRINC);
     exit;
-}else{
-    $inactive=30;
-    if(isset($_SESSION["finSesion"])){
-        $terminarSesion=time()-$_SESSION["finSesion"];
-        if($terminarSesion>$inactive){
-            session_destroy();
-            header($VUELTA_PAG_PRINC);
-            exit;
-        }
-        $_SESSION['finSesion']=time();
-    }
 }
 
 require("conexion.php");
@@ -26,7 +18,7 @@ $conexion=new UsoBD;
 $conexion->establecerConexion();
 $emails=$conexion->recogerEmailsUsuarios();
 
-$email=$_POST['email'];
+
 
 if(isset($_POST['volver'])){
     session_destroy();
@@ -40,11 +32,13 @@ if(isset($_POST['mostrarTodo'])){
 }
 
 if(isset($_POST['editar'])){
+    $email=$_POST['email'];
     header("Location: https://wwwdes.ismael.lonuncavisto.org/editarUsuario.php?email=$email");
     exit;
 }
 
 if(isset($_POST['eliminar'])){
+    $email=$_POST['email'];
     if($conexion->eliminarUsuario($email)){
         echo "Usuario eliminado <p></p>";
         header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador1.php");

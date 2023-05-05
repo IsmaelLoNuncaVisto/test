@@ -2,8 +2,10 @@
 
 $options =array('lifetime'=>1800, 'secure'=>true);
 
-session_start($options);
-if(!isset($_SESSION["administrador"])){
+session_set_cookie_params(1800);
+
+session_start();
+if(!isset($_SESSION["noAdministrador"])){
     header("Location: https://wwwdes.ismael.lonuncavisto.org");
     exit;
 

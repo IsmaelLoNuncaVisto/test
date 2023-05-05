@@ -1,6 +1,5 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 
 require '../vendor/autoload.php';
@@ -13,12 +12,7 @@ $crearUsuario=isset($_POST["create"]);
 $volver=isset($_POST["volver"]);
 
 //VariablesCrearUsuario
-$userName=$_POST["userName"];
-$email=$_POST["email"];
-$psswd=$_POST["password"];
-$nombre=$_POST["name"];
-$age=$_POST["age"];
-$telephone=$_POST["telephoneNumber"];
+
 
 //AccesoConexion
 
@@ -27,7 +21,12 @@ $conexion= new UsoBD;
 $conexion->establecerConexion();
 
 if(isset($_POST["create"])){
-    
+    $userName=$_POST["userName"];
+    $email=$_POST["email"];
+    $psswd=$_POST["password"];
+    $nombre=$_POST["name"];
+    $age=$_POST["age"];
+    $telephone=$_POST["telephoneNumber"];
 
 
    $mail=new PHPMailer();

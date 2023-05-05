@@ -1,7 +1,7 @@
 <?php
 
-require("Usuario.php");
-use public_html\Usuario;
+require("../src/Usuario.php");
+use src\Usuario;
 
 class UsoBD
 {
@@ -115,6 +115,9 @@ class UsoBD
         $result  = mysqli_query($this->conexion,$sql);
         $row=mysqli_fetch_assoc($result);
         $hash = $row['psswd'];
+        if($hash==null){
+            return "";
+        }
         return $hash;
     }
 
@@ -230,12 +233,10 @@ class UsoBD
             $age=$fila['age'];
             $telephone=$fila['telephone'];
             $adminitrador = $fila['administrador'];
-        }
-        
-
-        $Usuario = new Usuario($userName,$email, $password, $nombre,$age,$telephone, $adminitrador);
-
-        return $Usuario;
+            $Usuario = new Usuario($userName,$email, $password, $nombre,$age,$telephone, $adminitrador);
+            return $Usuario;
+            }
+            return null;
     }
 
     public function actualizarDatosUsuario($emailAntiguo,$actualizarUsuario):bool{
