@@ -257,7 +257,7 @@ class UsoBD
         }
     }
 
-    public function recuperarPassword($email,$token,$expiracion){
+    public function tokenUsuario($email,$token,$expiracion){
         $sql="UPDATE usuario SET token='$token', expiracion='$expiracion' WHERE email = '$email'";
         mysqli_query($this->conexion,$sql);
     }
@@ -269,6 +269,19 @@ class UsoBD
         $sql="UPDATE usuario SET psswd='$hash' WHERE token='$token'";
         mysqli_query($this->conexion,$sql);
         $this->borrarToken($token);
+
+    }
+
+    public function tiempoExpirado($email):bool{
+        $sql="SELECT COUNT(*) FROM usuario WHERE email = '$email' AND expiracion >= NOW()";
+        $resultado = mysqli_query($this->conexion,$sql);
+        $valido = (mysqli_fetch_array($resultado)[0]>0);
+
+        if($valido){
+            return true;
+        }
+        $this->eliminarUsuario($email);
+        return false;
 
     }
 

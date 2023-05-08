@@ -21,6 +21,13 @@ $conexion= new UsoBD;
 $conexion->establecerConexion();
 
 if(isset($_POST["create"])){
+
+    //CREAMOS UN TOKEN QUE SE ENVIARÁ AL MAIL
+    $token=uniqid();
+    $tiempo_vida = 3600;
+    $expiracion=date('Y-m-d H:i:s', time() + $tiempo_vida);
+
+    //SE ENVÍA EL CORREO
     $userName=$_POST["userName"];
     $email=$_POST["email"];
     $psswd=$_POST["password"];
@@ -42,7 +49,7 @@ if(isset($_POST["create"])){
    $mail->setFrom('ismael@lonuncavisto.com','Remitente');
    $mail->addAddress($email);
    $mail->Subject='Creación contraseña';
-   $mail->Body='Se creo una cuenta en: wwwdes.ismael.lonuncavisto.org';
+   $mail->Body='Se creo una cuenta en: wwwdes.ismael.lonuncavisto.org, confirme con el siguiente token: ' .  $token;
 
    if(!$mail->send()){
     echo 'Error al enviar correo electrónico: ' . $mail->ErrorInfo;
@@ -54,7 +61,9 @@ if(isset($_POST["create"])){
     $crearUsuario=array($userName,$email,$hash,$nombre,$age,$telephone);
 
     if($conexion->aniadirUsuario($crearUsuario)){
-        echo "Usuario añadido";
+        $conexion->tokenUsuario($email,$token,$expiracion);
+        header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaConfirmacionEmail.php?email=$email");
+        exit;
     }else{
         echo "El usuario ya existe";
     }

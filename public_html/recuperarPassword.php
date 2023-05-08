@@ -21,7 +21,7 @@ $expiracion=date('Y-m-d H:i:s', time() + $tiempo_vida);
 if(isset($_POST['recuperar'])){
     $email=$_POST['email'];
     if($conexion->existeUsuario($email)){
-    $conexion->recuperarPassword($email,$token,$expiracion);
+    $conexion->tokenUsuario($email,$token,$expiracion);
     mandarCorreo($email,$token);
     }else{
         echo "El email no existe";
