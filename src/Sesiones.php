@@ -44,6 +44,7 @@ class Session{
         setcookie($cookieName,$cookieValue,$cookieExpire);
     }
 
+    //DESTRUCCION DE LA SESION
     public static function destroySession($idSesion,$rutaRedirigir){
         session_unset();
         session_destroy();
@@ -52,7 +53,7 @@ class Session{
         exit;
     }
 
-
+    //ESTO SE VA A USAR PARA COMPROBAR LAS SESIONES
     function condicionesInicioSesion($sesionId,$nombreSesion,$paginaRedirigir){
         if(self::getCookieSesion($sesionId)!=null){
             self::mantenerCookie($sesionId);
