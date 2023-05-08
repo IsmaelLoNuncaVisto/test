@@ -1,12 +1,17 @@
 <?php
 
-session_set_cookie_params(1800);
+$VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
 
-session_start();
+if(isset($_COOKIE["cookieDeSesion"])){
+    session_id($_COOKIE["cookieDeSesion"]);
+    session_start();
 
-if(!isset($_SESSION["administrador"])){
-    header("Location: https://wwwdes.ismael.lonuncavisto.org");
+}else{
+    session_start();
+    if(!isset($_SESSION['administrador'])){
+    header($VUELTA_PAG_PRINC);
     exit;
+    }
 }
 
 

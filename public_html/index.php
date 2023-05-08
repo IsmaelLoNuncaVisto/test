@@ -1,9 +1,5 @@
 <?php
 
-$options =array('lifetime'=>1800, 'secure'=>true);
-
-
-
 require("conexion.php");
 $conexion=new UsoBD;
 $conexion->establecerConexion();
@@ -14,9 +10,18 @@ if(isset($_POST["login"])){
     $password=$_POST["password"];
 
     if($conexion->accesoUsuario($email,$password)){
+        
         if($conexion->accesoPaginaAdministrador($email)){
-            session_start();
-            $_SESSION['administrador']=$email;
+            if(isset($_POST["guardarUsuario"])&&$_POST["guardarUsuario"]=="1"){
+                $cookieName="cookieDeSesion";
+                $cookieValue="idSesion";
+                $cookieExpire=time()+(60*60*24*30);
+                setcookie($cookieName,$cookieValue,$cookieExpire);
+            }else{
+                session_start();
+                $_SESSION['administrador']=$email;
+            }
+            
             header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador1.php");
             exit;
         }else{
@@ -80,6 +85,12 @@ $conexion->cerrarConexion();
         </ol>
         <ol>
             <a href="crearUsuario.php">Crear una nueva cuenta</a>
+        </ol>
+        <ol>
+            <label for="">
+                <input type="checkbox" name="guardarUsuario" value="1">
+                Recordar mi sesión
+            </label>
         </ol>
     </ul>
 </form>

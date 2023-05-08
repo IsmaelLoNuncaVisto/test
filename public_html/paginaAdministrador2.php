@@ -1,23 +1,16 @@
 <?php
 
-$options =array('lifetime'=>1800, 'secure'=>true);
+$VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
 
-session_set_cookie_params(1800);
+if(isset($_COOKIE["cookieDeSesion"])){
+    session_id($_COOKIE["cookieDeSesion"]);
+    session_start();
 
-session_start();
-if(!isset($_SESSION["administrador"])){
-    header("Location: https://wwwdes.ismael.lonuncavisto.org");
-    exit;
 }else{
-    $inactive=30;
-    if(isset($_SESSION["finSesion"])){
-        $terminarSesion=time()-$_SESSION["finSesion"];
-        if($terminarSesion>$inactive){
-            session_destroy();
-            header("Location: https://wwwdes.ismael.lonuncavisto.org");
-            exit;
-        }
-        $_SESSION['finSesion']=time();
+    session_start();
+    if(!isset($_SESSION['administrador'])){
+    header($VUELTA_PAG_PRINC);
+    exit;
     }
 }
 
@@ -32,7 +25,7 @@ $usuarios=$conexion->recogerUsuarios();
 
 if(isset($_POST['volver'])){
     session_destroy();
-    header("Location: https://wwwdes.ismael.lonuncavisto.org");
+    header("Location: " . $VUELTA_PAG_PRINC);
     exit;
 }
 

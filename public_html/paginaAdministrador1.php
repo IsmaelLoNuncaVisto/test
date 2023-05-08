@@ -1,16 +1,18 @@
 <?php
 
+
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
-$options =array('lifetime'=>1800, 'secure'=>true);
 
+if(isset($_COOKIE["cookieDeSesion"])){
+    session_id($_COOKIE["cookieDeSesion"]);
+    session_start();
 
-session_set_cookie_params(1800);
-
-session_start();
-
-if(!isset($_SESSION["administrador"])){
+}else{
+    session_start();
+    if(!isset($_SESSION['administrador'])){
     header($VUELTA_PAG_PRINC);
     exit;
+    }
 }
 
 require("conexion.php");
