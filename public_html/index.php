@@ -1,6 +1,12 @@
 <?php
 
+require("../src/Sesiones.php");
 require("conexion.php");
+
+use src\Session;
+
+$sesion= new Session();
+
 $conexion=new UsoBD;
 $conexion->establecerConexion();
 
@@ -13,20 +19,16 @@ if(isset($_POST["login"])){
         
         if($conexion->accesoPaginaAdministrador($email)){
             if(isset($_POST["guardarUsuario"])&&$_POST["guardarUsuario"]=="1"){
-                $cookieName="cookieDeSesion";
-                $cookieValue="idSesion";
-                $cookieExpire=time()+(60*60*24*30);
-                setcookie($cookieName,$cookieValue,$cookieExpire);
+                $sesion->cookieSession("idSession");
             }else{
-                session_start();
-                $_SESSION['administrador']=$email;
+                $sesion->startSession();
+                $sesion->setSession("administrador",$email);
             }
-            
             header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador1.php");
             exit;
         }else{
-            session_start();
-            $_SESSION['noAdministrador']=$email;
+            $sesion->startSession();
+                $sesion->setSession("noAdministrador",$email);
             header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaNoAdministrador.php");
             exit;
         }
@@ -35,7 +37,6 @@ if(isset($_POST["login"])){
     }
     
 }
-
 $conexion->cerrarConexion();
 ?>
 

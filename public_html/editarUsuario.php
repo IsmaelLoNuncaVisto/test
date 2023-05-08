@@ -1,21 +1,17 @@
 <?php
 
+require ("../src/Sesiones.php");
+require("conexion.php");
+
+use src\Session;
+
+$sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
-
-if(isset($_COOKIE["cookieDeSesion"])){
-    session_id($_COOKIE["cookieDeSesion"]);
-    session_start();
-
-}else{
-    session_start();
-    if(!isset($_SESSION['administrador'])){
-    header($VUELTA_PAG_PRINC);
-    exit;
-    }
-}
+$sesionId="cookieDeSesion";
+$nombreSesion="administrador";
+$sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
 
-    require("conexion.php");
     $conexion=new UsoBD;
     $conexion->establecerConexion();
 
@@ -53,13 +49,8 @@ if(isset($_COOKIE["cookieDeSesion"])){
     }
 
     if(isset($_POST["cerrarSesion"])){
-        session_destroy();
-        header("Location: https://wwwdes.ismael.lonuncavisto.org");
-        exit;
+        $sesion->destroySession($sesionId,$VUELTA_PAG_PRINC);
     }
-
-
-    
     $conexion->cerrarConexion();
 ?>
 

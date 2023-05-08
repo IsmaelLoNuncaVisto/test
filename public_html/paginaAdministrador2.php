@@ -1,32 +1,23 @@
 <?php
 
-$VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
-
-if(isset($_COOKIE["cookieDeSesion"])){
-    session_id($_COOKIE["cookieDeSesion"]);
-    session_start();
-
-}else{
-    session_start();
-    if(!isset($_SESSION['administrador'])){
-    header($VUELTA_PAG_PRINC);
-    exit;
-    }
-}
-
+require ("../src/Sesiones.php");
 require("conexion.php");
+
+use src\Session;
+
+$sesion=new Session();
+$VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
+$sesionId="cookieDeSesion";
+$nombreSesion="administrador";
+$sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
+
 $conexion=new UsoBD;
 $conexion->establecerConexion();
 
-
 $usuarios=$conexion->recogerUsuarios();
 
-
-
-if(isset($_POST['volver'])){
-    session_destroy();
-    header("Location: " . $VUELTA_PAG_PRINC);
-    exit;
+if(isset($_POST['cerrarSesion'])){
+    $sesion->destroySession($sesionId,$VUELTA_PAG_PRINC);
 }
 
 if(isset($_POST['mostrarTodo'])){
@@ -53,7 +44,6 @@ if(isset($_POST['eliminar'])){
     }
 
 }
-
 
 $conexion->cerrarConexion();
 ?>
@@ -114,7 +104,7 @@ $conexion->cerrarConexion();
     <tr>
         <form action="" method="post">
             <button type="submit" name="mostrarTodo">Resumen</button>
-            <button type="submit" name="volver">Cerra sesión</button>
+            <button type="submit" name="cerrarSesion">Cerra sesión</button>
         </form>
         
     </tr>
