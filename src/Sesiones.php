@@ -25,8 +25,8 @@ class Session{
 
     //COOKIES SESION 
 
-    public static function cookieSession($sessionId){
-        $cookieName="cookieDeSesion";
+    public static function cookieSession($nombreCookie,$sessionId){
+        $cookieName=$nombreCookie;
         $cookieValue=$sessionId;
         $cookieExpire=time()+(60*60*24*30);
         setcookie($cookieName,$cookieValue,$cookieExpire);
@@ -37,18 +37,18 @@ class Session{
         self::startSession();
     }
 
-    public static function closeCookieSession($idSesion){
-        $cookieName="cookieDeSesion";
+    public static function closeCookieSession($cookieNombre,$idSesion){
+        $cookieName=$cookieNombre;
         $cookieValue=$idSesion;
         $cookieExpire=time()-3600;
         setcookie($cookieName,$cookieValue,$cookieExpire);
     }
 
     //DESTRUCCION DE LA SESION
-    public static function destroySession($idSesion,$rutaRedirigir){
+    public static function destroySession($nombreCookie,$idSesion,$rutaRedirigir){
         session_unset();
         session_destroy();
-        self::closeCookieSession($idSesion);
+        self::closeCookieSession($nombreCookie,$idSesion);
         header("Location: " . $rutaRedirigir);
         exit;
     }

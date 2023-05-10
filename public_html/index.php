@@ -22,7 +22,7 @@ if (isset($_POST["login"])) {
 
             if (isset($_POST["guardarUsuario"]) && $_POST["guardarUsuario"] == "1") {
 
-                $sesion->cookieSession("idSession");
+                $sesion->cookieSession("administrador","idSession");
                 
             } else {
 
@@ -36,8 +36,16 @@ if (isset($_POST["login"])) {
 
         } else {
 
-            $sesion->startSession();
-            $sesion->setSession("noAdministrador", $email);
+            if (isset($_POST["guardarUsuario"]) && $_POST["guardarUsuario"] == "1") {
+
+                $sesion->cookieSession("noAdministrador","idSession");
+                
+            } else {
+
+                $sesion->startSession();
+                $sesion->setSession("noAdministrador", $email);
+
+            }
             header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaNoAdministrador.php");
             exit;
         }

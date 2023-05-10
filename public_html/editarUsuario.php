@@ -7,7 +7,7 @@ use src\Session;
 
 $sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
-$sesionId="cookieDeSesion";
+$sesionId="administrador";
 $nombreSesion="administrador";
 $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
@@ -49,7 +49,7 @@ $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
     }
 
     if(isset($_POST["cerrarSesion"])){
-        $sesion->destroySession($sesionId,$VUELTA_PAG_PRINC);
+        $sesion->destroySession($nombreSesion,$sesionId,$VUELTA_PAG_PRINC);
     }
     $conexion->cerrarConexion();
 ?>
