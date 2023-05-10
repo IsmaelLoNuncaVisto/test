@@ -15,7 +15,8 @@ if (isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    if ($conexion->accesoUsuario($email, $password)) {
+
+    if ($conexion->accesoUsuario($email, $password)&& $conexion->noTieneToken($email)) {
 
         if ($conexion->accesoPaginaAdministrador($email)) {
 

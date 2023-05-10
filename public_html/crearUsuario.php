@@ -49,7 +49,7 @@ if(isset($_POST["create"])){
    $mail->setFrom('ismael@lonuncavisto.com','Remitente');
    $mail->addAddress($email);
    $mail->Subject='Creación contraseña';
-   $mail->Body='Se creo una cuenta en: wwwdes.ismael.lonuncavisto.org, confirme con el siguiente token: ' .  $token;
+   $mail->Body='Se creo una cuenta en: wwwdes.ismael.lonuncavisto.org, confirme con el siguiente enlace: https://wwwdes.ismael.lonuncavisto.org/paginaConfirmacionEmail.php?email=' . $email . '&token=' . $token . PHP_EOL . 'Su token será: ' .  $token;
 
    if(!$mail->send()){
     echo 'Error al enviar correo electrónico: ' . $mail->ErrorInfo;
@@ -165,7 +165,7 @@ $conexion->cerrarConexion();
             </ol>
             <ol>
                 <label for="telephoneNumber">Telephone:</label>
-                <input type="text" name="telephoneNumber" id="inputtelephone">
+                <input type="tel" name="telephoneNumber" pattern="+[0-9]{2}-[0-9]{9}" placeholder="+34-123456789" id="inputtelephone">
             </ol>
             <ol>
                 <button type="submit" name="create" onclick="validarFormulario();">Create Account</button>

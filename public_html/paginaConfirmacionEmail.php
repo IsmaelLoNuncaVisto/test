@@ -55,7 +55,7 @@ $conexion->cerrarConexion();
         <ul>
             <ol>
                 <label for="token">Token:</label>
-                <input type="text" name="token" id="token">
+                <input type="text" name="token" id="token" value="<?php echo $_GET['token'];?>">
             </ol>
             <ol>
                 <button type="submit" name="confirmarToken" onclick="valoresCorrectos();">Comprobar token</button>
