@@ -1,18 +1,14 @@
 <?php
 
+require ("../src/Sesiones.php");
+
+use src\Session;
+
+$sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
-
-if(isset($_COOKIE["cookieDeSesion"])){
-    session_id($_COOKIE["cookieDeSesion"]);
-    session_start();
-
-}else{
-    session_start();
-    if(!isset($_SESSION['administrador'])){
-    header($VUELTA_PAG_PRINC);
-    exit;
-    }
-}
+$sesionId="cookieDeSesion";
+$nombreSesion="noAdministrador";
+$sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
 ?>
 
