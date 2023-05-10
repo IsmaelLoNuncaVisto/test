@@ -9,6 +9,7 @@ if(isset($_POST["confirmarToken"])){
     if($conexion->comprobarValidezToken($_POST['token'])){
         echo "Usuario añadido";
         $conexion->borrarToken($_POST['token']);
+        sleep(2);
         header("Location: https://wwwdes.ismael.lonuncavisto.org");
         exit;
     }else{

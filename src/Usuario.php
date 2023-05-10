@@ -2,7 +2,9 @@
 
     namespace src;
 
-    class Usuario{
+use UsoBD;
+
+    class Usuario extends UsoBD{
         private  string $userNameUsuario;
         private  string $emailUsuario;
         private  string $passwordUsuario;
@@ -75,6 +77,10 @@
 
         public function getAdministrador():int{
             return $this->administrador;
+        }
+
+        public function hashPassword(){
+
         }
 
     }

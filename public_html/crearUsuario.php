@@ -1,11 +1,6 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
 
-
-require '../vendor/autoload.php';
-require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '../vendor/phpmailer/phpmailer/src/Exception.php';
-require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+use src\Email;
 
 
 $crearUsuario=isset($_POST["create"]);
@@ -35,25 +30,8 @@ if(isset($_POST["create"])){
     $age=$_POST["age"];
     $telephone=$_POST["telephoneNumber"];
 
-
-   $mail=new PHPMailer();
-
-   $mail->isSMTP();
-   $mail->Host = 'imap.lonuncavisto.com';
-   $mail->SMTPAuth=true;
-   $mail->Username='ismael@lonuncavisto.com';
-   $mail->Password='hd29823bd0.9aqP';
-   $mail->SMTPSecure='STARTTLS';
-   $mail->Port=587;
-
-   $mail->setFrom('ismael@lonuncavisto.com','Remitente');
-   $mail->addAddress($email);
-   $mail->Subject='Creación contraseña';
-   $mail->Body='Se creo una cuenta en: wwwdes.ismael.lonuncavisto.org, confirme con el siguiente enlace: https://wwwdes.ismael.lonuncavisto.org/paginaConfirmacionEmail.php?email=' . $email . '&token=' . $token . PHP_EOL . 'Su token será: ' .  $token;
-
-   if(!$mail->send()){
-    echo 'Error al enviar correo electrónico: ' . $mail->ErrorInfo;
-   }
+    $mail=new Email();
+    $mail->enviarEmailCreacionCuenta($email,$token);
 
     //Primero creamos el HASH porque al mandar un array no pasaría la encriptación y habría que
     //regenerar el array a la hora de ingresar las credenciales
@@ -62,8 +40,7 @@ if(isset($_POST["create"])){
 
     if($conexion->aniadirUsuario($crearUsuario)){
         $conexion->tokenUsuario($email,$token,$expiracion);
-        header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaConfirmacionEmail.php?email=$email");
-        exit;
+        echo "Se ha enviado un email para confirmar la cuenta a: " . $email;
     }else{
         echo "El usuario ya existe";
     }

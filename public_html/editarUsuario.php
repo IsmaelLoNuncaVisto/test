@@ -17,7 +17,12 @@ $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
 
     $email=$_GET['email'];
+    if($conexion->existeUsuario($email)){
     $usuario=$conexion->usuarioEscogido($email);
+    }else{
+    header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador1.php");
+    exit;
+    }
 
     
 
@@ -32,6 +37,7 @@ $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
         $telephone=$_POST['telephone'];
         $administrador=$_POST['administrador'];
         $crearUsuario=array($userName,$emailActualizar,$password,$name,$age,$telephone,$administrador);
+        
         if($conexion->actualizarDatosUsuario($email,$crearUsuario)){
             echo "Usuario actualizado";
             header("Location: https://wwwdes.ismael.lonuncavisto.org/editarUsuario.php?email=$emailActualizar");
@@ -41,6 +47,7 @@ $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
             header("Location: https://wwwdes.ismael.lonuncavisto.org/editarUsuario.php?email=$email");
             exit;
         }
+        
     }
 
     if(isset($_POST["cancelar"])){

@@ -239,6 +239,8 @@ class UsoBD
             return null;
     }
 
+    /**/
+
     public function actualizarDatosUsuario($emailAntiguo,$actualizarUsuario):bool{
 
         $usuario=$this->inyeccionCredenciales($actualizarUsuario);         

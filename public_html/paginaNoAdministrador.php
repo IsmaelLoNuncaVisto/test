@@ -18,9 +18,9 @@ $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pagina 1</title>
 </head>
 <body>
-    Esta es la página del no administrador;
+    <h1>Hola No Administrador!</h1>
 </body>
 </html>
