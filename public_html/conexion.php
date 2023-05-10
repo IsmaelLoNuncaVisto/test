@@ -296,6 +296,19 @@ class UsoBD
         }
     }
 
+    public function noTieneToken($email):bool{
+
+        $inyeccionEmail = mysqli_real_escape_string($this->conexion, $email);
+        $sql="SELECT token FROM usuario WHERE email = '$inyeccionEmail'";
+        $result=mysqli_query($this->conexion,$sql);
+        while($fila=mysqli_fetch_array($result)){
+            if($fila['token']==""){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function borrarToken($token){
         $sql="UPDATE usuario SET expiracion='0000-00-00 00:00:00', token='' WHERE token='$token'";
         mysqli_query($this->conexion,$sql);
