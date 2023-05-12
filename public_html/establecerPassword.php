@@ -1,16 +1,18 @@
 <?php
 
+use src\UsoBD;
+use src\Usuario;
 
-
-    require "conexion.php";
     $conexion = new UsoBD();
+    $usuario = new Usuario;
+
     $conexion->establecerConexion();
 
     if(isset($_POST["restablecerPassword"])){
         $token=$_POST["token"];
         $password=$_POST["password"];
-        if($conexion->comprobarValidezToken($token)){
-            $conexion->restablecerPassword($password,$token);
+        if($usuario->comprobarValidezToken($token)){
+            $usuario->restablecerPassword($password,$token);
             echo "Se ha restablecido la contraseña";
             sleep(2);
             header ("Location: https://wwwdes.ismael.lonuncavisto.org");

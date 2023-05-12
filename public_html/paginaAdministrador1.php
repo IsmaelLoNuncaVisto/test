@@ -1,9 +1,9 @@
 <?php
 
-require ("../src/Sesiones.php");
-require("conexion.php");
 
 use src\Session;
+use src\UsoBD;
+use src\Usuario;
 
 $sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
@@ -12,8 +12,9 @@ $nombreSesion="administrador";
 $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
 $conexion=new UsoBD;
+$usurio=new Usuario();
 $conexion->establecerConexion();
-$emails=$conexion->recogerEmailsUsuarios();
+$emails=$usuario->recogerEmailsUsuarios();
 
 
 
@@ -34,7 +35,7 @@ if(isset($_POST['editar'])){
 
 if(isset($_POST['eliminar'])){
     $email=$_POST['email'];
-    if($conexion->eliminarUsuario($email)){
+    if($usuario->eliminarUsuario($email)){
         echo "Usuario eliminado <p></p>";
         header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador1.php");
         exit;

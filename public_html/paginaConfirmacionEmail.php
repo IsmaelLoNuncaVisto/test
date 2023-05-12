@@ -1,19 +1,22 @@
 <?php
 
-require ("conexion.php");
+use src\UsoBD;
+use src\Usuario;
+
 $conexion= new UsoBD();
+$usuario=new Usuario();
 $conexion->establecerConexion();
 
 if(isset($_POST["confirmarToken"])){
 
-    if($conexion->comprobarValidezToken($_POST['token'])){
+    if($usuario->comprobarValidezToken($_POST['token'])){
         echo "Usuario añadido";
-        $conexion->borrarToken($_POST['token']);
+        $usuario->borrarToken($_POST['token']);
         sleep(2);
         header("Location: https://wwwdes.ismael.lonuncavisto.org");
         exit;
     }else{
-        if($conexion->tiempoExpirado($_GET['email'])){
+        if($usuario->tiempoExpirado($_GET['email'])){
             echo "El tiempo para dar de alta al usuario ha expirado, debe volver a ingresar sus credenciales";
         }else{
         echo "El token no es correcto";
@@ -24,7 +27,7 @@ if(isset($_POST["confirmarToken"])){
 
 if(isset($_POST["cancelar"])){
     $email=$_GET['email'];
-    $conexion-> eliminarUsuario($email);
+    $usuario-> eliminarUsuario($email);
     header("Location: https://wwwdes.ismael.lonuncavisto.org/crearUsuario.php");
     exit;
 

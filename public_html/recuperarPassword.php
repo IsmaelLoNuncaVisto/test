@@ -1,13 +1,12 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
 use src\Email;
+use src\UsoBD;
+use src\Usuario;
 
 $mail=new Email();
-
-
-require ('conexion.php');
 $conexion=new UsoBD();
+$usuario=new Usuario();
 $conexion->establecerConexion();
 
 
@@ -18,8 +17,8 @@ $expiracion=date('Y-m-d H:i:s', time() + $tiempo_vida);
 
 if(isset($_POST['recuperar'])){
     $email=$_POST['email'];
-    if($conexion->existeUsuario($email)){
-    $conexion->tokenUsuario($email,$token,$expiracion);
+    if($usuario->existeUsuario($email)){
+    $usuario->tokenUsuario($email,$token,$expiracion);
     $mail->enviarEmailCreacionCuenta($email,$token);
     }else{
         echo "El email no existe";

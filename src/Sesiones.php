@@ -4,6 +4,11 @@ namespace src;
 
 class Session{
 
+    public function __construct()
+    {
+        
+    }
+
     public static function startSession(){
         session_start();
     }

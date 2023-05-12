@@ -1,24 +1,22 @@
 <?php
 
-require("../src/Sesiones.php");
-require("conexion.php");
+require_once ("../src/Sesiones.php");
+require_once ("../services/ConexionUsuario.php");
 
+use test\services\ConexionUsuario;
 use src\Session;
 
 $sesion = new Session();
-
-$conexion = new UsoBD;
-$conexion->establecerConexion();
+$conexionUsuario = new ConexionUsuario();
 
 if (isset($_POST["login"])) {
 
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+    if ($conexionUsuario->accesoUsuario($email, $password)&& $conexionUsuario->existeToken($email)) {
 
-    if ($conexion->accesoUsuario($email, $password)&& $conexion->noTieneToken($email)) {
-
-        if ($conexion->accesoPaginaAdministrador($email)) {
+        if ($conexionUsuario->accesoPaginaAdministrador($email)==1) {
 
             if (isset($_POST["guardarUsuario"]) && $_POST["guardarUsuario"] == "1") {
 
@@ -53,7 +51,6 @@ if (isset($_POST["login"])) {
         echo "Acceso denegado";
     }
 }
-$conexion->cerrarConexion();
 ?>
 
 <!DOCTYPE html>

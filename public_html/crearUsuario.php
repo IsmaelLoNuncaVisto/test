@@ -1,57 +1,54 @@
 <?php
 
+require ("../src/Email.php");
+require ("../src/Usuario.php");
+require ("../services/ConexionUsuario.php");
+
 use src\Email;
-
-
-$crearUsuario=isset($_POST["create"]);
-$volver=isset($_POST["volver"]);
-
-//VariablesCrearUsuario
-
-
-//AccesoConexion
-
-require("conexion.php");
-$conexion= new UsoBD;
-$conexion->establecerConexion();
+use test\database\DBIsmael;
+use test\services\ConexionUsuario;
+use test\src\Usuario;
 
 if(isset($_POST["create"])){
+
+    $db=DBIsmael::getConexion();
+
+    $conexionUsuario = new ConexionUsuario();
 
     //CREAMOS UN TOKEN QUE SE ENVIARÁ AL MAIL
     $token=uniqid();
     $tiempo_vida = 3600;
     $expiracion=date('Y-m-d H:i:s', time() + $tiempo_vida);
 
-    //SE ENVÍA EL CORREO
+    
     $userName=$_POST["userName"];
     $email=$_POST["email"];
     $psswd=$_POST["password"];
     $nombre=$_POST["name"];
     $age=$_POST["age"];
     $telephone=$_POST["telephoneNumber"];
+    $administrador=$conexionUsuario->administradorAniadirUsuarios();
 
+    $usuario=new Usuario($userName,$email,$psswd,$nombre,$age,$telephone,$administrador);
+
+    //SE ENVÍA EL CORREO
     $mail=new Email();
     $mail->enviarEmailCreacionCuenta($email,$token);
 
-    //Primero creamos el HASH porque al mandar un array no pasaría la encriptación y habría que
-    //regenerar el array a la hora de ingresar las credenciales
-    $hash=$conexion->encriptadoPasword($psswd);
-    $crearUsuario=array($userName,$email,$hash,$nombre,$age,$telephone);
-
-    if($conexion->aniadirUsuario($crearUsuario)){
-        $conexion->tokenUsuario($email,$token,$expiracion);
+    if($conexionUsuario->existeUsuario($email)!=null){
+        $conexionUsuario->aniadirUsuario($usuario);
+        $conexionUsuario->tokenUsuario($email,$token,$expiracion);
         echo "Se ha enviado un email para confirmar la cuenta a: " . $email;
     }else{
         echo "El usuario ya existe";
     }
 }
 
-if($volver){
+if(isset($_POST["volver"])){
     header("Location: https://wwwdes.ismael.lonuncavisto.org");
     exit;
 }
 
-$conexion->cerrarConexion();
 ?>
 
 <!DOCTYPE html>

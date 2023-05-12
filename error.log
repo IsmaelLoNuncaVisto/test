@@ -1,21 +1,6 @@
-[10-May-2023 12:59:14 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: Return value of UsoBD::usuarioEscogido() must be an instance of src\Usuario, null returned in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php:239
+[12-May-2023 11:59:34 Europe/Madrid] PHP Fatal error:  Uncaught PDOException: could not find driver in /home/ismael/desarrollo/proyectos/test/database/DBIsmael.php:22
 Stack trace:
-#0 /home/ismael/desarrollo/proyectos/test/public_html/editarUsuario.php(20): UsoBD->usuarioEscogido()
-#1 {main}
-  thrown in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 239
-[10-May-2023 13:00:24 Europe/Madrid] PHP Notice:  Undefined index: email in /home/ismael/desarrollo/proyectos/test/public_html/editarUsuario.php on line 19
-[10-May-2023 13:00:24 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: Return value of UsoBD::usuarioEscogido() must be an instance of src\Usuario, null returned in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php:239
-Stack trace:
-#0 /home/ismael/desarrollo/proyectos/test/public_html/editarUsuario.php(20): UsoBD->usuarioEscogido()
-#1 {main}
-  thrown in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 239
-[10-May-2023 14:28:54 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: Return value of UsoBD::usuarioEscogido() must be an instance of src\Usuario, null returned in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php:239
-Stack trace:
-#0 /home/ismael/desarrollo/proyectos/test/public_html/editarUsuario.php(20): UsoBD->usuarioEscogido()
-#1 {main}
-  thrown in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 239
-[10-May-2023 14:29:35 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: Return value of UsoBD::usuarioEscogido() must be an instance of src\Usuario, null returned in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php:239
-Stack trace:
-#0 /home/ismael/desarrollo/proyectos/test/public_html/editarUsuario.php(20): UsoBD->usuarioEscogido()
-#1 {main}
-  thrown in /home/ismael/desarrollo/proyectos/test/public_html/conexion.php on line 239
+#0 /home/ismael/desarrollo/proyectos/test/database/DBIsmael.php(22): PDO->__construct()
+#1 /home/ismael/desarrollo/proyectos/test/public_html/crearUsuario.php(14): test\database\DBIsmael::getConexion()
+#2 {main}
+  thrown in /home/ismael/desarrollo/proyectos/test/database/DBIsmael.php on line 22

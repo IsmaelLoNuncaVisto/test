@@ -1,88 +1,116 @@
 <?php
 
-    namespace src;
+namespace test\src;
 
-use UsoBD;
 
-    class Usuario extends UsoBD{
-        private  string $userNameUsuario;
-        private  string $emailUsuario;
-        private  string $passwordUsuario;
-        private  string $nombreUsuario;
-        private  int $ageUsusario;
-        private  string $telephoneUsuario;
-        private  int  $administrador;
+class Usuario{
 
-        public function __construct(string $userNameUsuario, string $emailUsuario, string $passwordUsuario, string $nombreUsuario, int $ageUsuario, string $telephoneUsuario, int $administrador){
-            $this->userNameUsuario=$userNameUsuario;
-            $this->emailUsuario = $emailUsuario;
-            $this->passwordUsuario = $passwordUsuario;
-            $this->nombreUsuario = $nombreUsuario;
-            $this->ageUsusario= $ageUsuario;
-            $this->telephoneUsuario=$telephoneUsuario;
-            $this->administrador= $administrador;
-        }
+    private  string $userNameUsuario;
+    private  string $emailUsuario;
+    private  string $passwordUsuario;
+    private  string $nombreUsuario;
+    private  int $ageUsusario;
+    private  string $telephoneUsuario;
+    private  int  $administrador;
 
-        public function setUserNameUsuario($userNameUsuario):void{
-            $this->userNameUsuario=$userNameUsuario;
-        }
-
-        public function getUserNameUsuario():string{
-            return $this->userNameUsuario;
-        }
-
-        public function setEmailUsuario($emailUsuario):void{
-            $this->emailUsuario=$emailUsuario;
-        }
-
-        public function getEmailUsuario():string{
-            return $this->emailUsuario;
-        }
-
-        public function setPasswordUsuario($passwordUsuario):void{
-            $this->passwordUsuario=$passwordUsuario;
-        }
-
-        public function getPasswordUsuario():string{
-            return $this->passwordUsuario;
-        }
-
-        public function setNombreUsuario($nombreUsuario):void{
-            $this->nombreUsuario=$nombreUsuario;
-        }
-
-        public function getNombreUsuario():string{
-            return $this->nombreUsuario;
-        }
-
-        public function setAgeUsuario($ageUsuario):void{
-            $this->ageUsusario=$ageUsuario;
-        }
-
-        public function getAgeUsuario():string{
-            return $this->ageUsusario;
-        }
-
-        public function setTelephoneUsuario($telephoneUsuario):void{
-            $this->telephoneUsuario;
-        }
-
-        public function getTelephoneUsuario():string{
-            return $this->telephoneUsuario;
-        }
-
-        public function setAdministrador($administrador):void{
-            $this->administrador=$administrador;
-        }
-
-        public function getAdministrador():int{
-            return $this->administrador;
-        }
-
-        public function hashPassword(){
-
-        }
-
+    public function __construct(string $userNameUsuario, string $emailUsuario, string $passwordUsuario, string $nombreUsuario, int $ageUsuario, string $telephoneUsuario, int $administrador)
+    {
+        $this->userNameUsuario=$userNameUsuario;
+        $this->emailUsuario = $emailUsuario;
+        $this->passwordUsuario = self::encriptadoPassword($passwordUsuario);
+        $this->nombreUsuario = $nombreUsuario;
+        $this->ageUsusario= $ageUsuario;
+        $this->telephoneUsuario=$telephoneUsuario;
+        $this->administrador= $administrador;
     }
-    
 
+    public function getUserNameUsuario()
+    {
+        return $this->userNameUsuario;
+    }
+
+    public function setUserNameUsuario($userNameUsuario)
+    {
+        $this->userNameUsuario = $userNameUsuario;
+        return $this;
+    }
+
+    public function getEmailUsuario()
+    {
+        return $this->emailUsuario;
+    }
+
+    public function setEmailUsuario($emailUsuario)
+    {
+        $this->emailUsuario = $emailUsuario;
+        return $this;
+    }
+
+    public function getPasswordUsuario()
+    {
+        return $this->passwordUsuario;
+    }
+
+    public function setPasswordUsuario($passwordUsuario)
+    {
+        $this->passwordUsuario = $passwordUsuario;
+        return $this;
+    }
+ 
+    public function getNombreUsuario()
+    {
+        return $this->nombreUsuario;
+    }
+ 
+    public function setNombreUsuario($nombreUsuario)
+    {
+        $this->nombreUsuario = $nombreUsuario;
+        return $this;
+    }
+
+    public function getAgeUsusario()
+    {
+        return $this->ageUsusario;
+    }
+
+    public function setAgeUsusario($ageUsusario)
+    {
+        $this->ageUsusario = $ageUsusario;
+        return $this;
+    }
+
+    public function getTelephoneUsuario()
+    {
+        return $this->telephoneUsuario;
+    }
+
+    public function setTelephoneUsuario($telephoneUsuario)
+    {
+        $this->telephoneUsuario = $telephoneUsuario;
+        return $this;
+    }
+ 
+    public function getAdministrador()
+    {
+        return $this->administrador;
+    }
+ 
+    public function setAdministrador($administrador)
+    {
+        $this->administrador = $administrador;
+        return $this;
+    }
+
+    /*
+    *
+    *USO DE BASES DE DATOS DEL USUARIO
+    *
+    */
+
+    //HASH PASWORD
+
+    public static function encriptadoPassword($password):string{
+        return password_hash($password,PASSWORD_BCRYPT);
+    }
+
+}

@@ -1,9 +1,9 @@
 <?php
 
-require ("../src/Sesiones.php");
-require("conexion.php");
 
 use src\Session;
+use src\UsoBD;
+use src\Usuario;
 
 $sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
