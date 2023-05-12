@@ -1,6 +1,7 @@
 <?php
 phpinfo();
 
+
 require_once "../vendor/autoload.php";
 
 use APP\clasesBasicas\Session;
