@@ -5,13 +5,10 @@ require ("../src/Usuario.php");
 require ("../services/ConexionUsuario.php");
 
 use src\Email;
-use test\database\DBIsmael;
 use test\services\ConexionUsuario;
 use test\src\Usuario;
 
 if(isset($_POST["create"])){
-
-    $db=DBIsmael::getConexion();
 
     $conexionUsuario = new ConexionUsuario();
 

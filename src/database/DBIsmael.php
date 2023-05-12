@@ -1,9 +1,9 @@
 <?php
+namespace APP\database;
 
-namespace test\database;
+
 
 use PDO;
-use PDOException;
 
 class DBIsmael
 {
@@ -17,13 +17,15 @@ class DBIsmael
         if(!self::$_db){
             
         $pdo=new PDO(
-            'mysqli:host=localhost;dbname=ismael;charsert=utf8mb4',
+            'mysql:host=localhost;dbname=ismael;charsert=utf8',
             'ismael',
             'ismael'
         );
 
+        
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        
 
         self::$_db = $pdo;
         }

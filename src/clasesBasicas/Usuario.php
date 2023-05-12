@@ -1,6 +1,6 @@
 <?php
+namespace APP\clasesBasicas;
 
-namespace test\src;
 
 
 class Usuario{

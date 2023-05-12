@@ -6,6 +6,7 @@
         "monolog/monolog": "^2.9",
         "guzzlehttp/guzzle": "^7.5",
         "phpmailer/phpmailer": "^6.8",
+        "php": "^7.4",
         "ext-pdo": "*"
     },
     "require-dev": {
@@ -14,7 +15,8 @@
     "license": "MIT License",
     "autoload": {
         "psr-4": {
-            "Ismaellonuncavisto\\Test\\": "src/"
+            "APP\\": "src"
+
         }
     },
     "authors": [

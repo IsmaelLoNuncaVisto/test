@@ -1,15 +1,12 @@
 <?php
 
 
+namespace APP\services;
 
-namespace test\services;
 
-require ("../database/DBIsmael.php");
 
 use PDO;
 use PDOException;
-use test\src\Usuario;
-use test\database\DBIsmael;
 
 class ConexionUsuario{
 
@@ -83,7 +80,7 @@ class ConexionUsuario{
         }
     }
 
-    public function mostrarUsuarios() : ?Array
+    public function mostrarUsuarios() : array
     {
         $result = [];
         try {

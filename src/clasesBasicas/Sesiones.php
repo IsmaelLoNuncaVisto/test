@@ -1,6 +1,8 @@
 <?php
+namespace APP\clasesBasicas;
 
-namespace src;
+
+
 
 class Session{
 

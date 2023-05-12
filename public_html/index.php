@@ -1,13 +1,13 @@
 <?php
+phpinfo();
 
-require_once ("../src/Sesiones.php");
-require_once ("../services/ConexionUsuario.php");
+require_once "../vendor/autoload.php";
 
-use test\services\ConexionUsuario;
-use src\Session;
+use APP\clasesBasicas\Session;
+use App\services\ConexionUsuario;
 
 $sesion = new Session();
-$conexionUsuario = new ConexionUsuario();
+$conexionUsuario = new ConexionUsuario;
 
 if (isset($_POST["login"])) {
 
