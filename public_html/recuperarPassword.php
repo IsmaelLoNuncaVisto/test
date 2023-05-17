@@ -1,12 +1,12 @@
 <?php
 
-use src\Email;
-use src\UsoBD;
-use src\Usuario;
+require("../vendor/autoload.php");
+
+use App\Entity\Email;
+use App\Services\ConexionUsuario;
 
 $mail=new Email();
-$conexion=new UsoBD();
-$usuario=new Usuario();
+$conexion=new ConexionUsuario();
 $conexion->establecerConexion();
 
 
@@ -17,9 +17,10 @@ $expiracion=date('Y-m-d H:i:s', time() + $tiempo_vida);
 
 if(isset($_POST['recuperar'])){
     $email=$_POST['email'];
-    if($usuario->existeUsuario($email)){
-    $usuario->tokenUsuario($email,$token,$expiracion);
-    $mail->enviarEmailCreacionCuenta($email,$token);
+    if($conexion->existeUsuario($email)){
+    $conexion->tokenUsuario($email,$token,$expiracion);
+    $mail->enviarEmailModificacionPassword($email,$token);
+    echo "Se ha enviado un email para confirmar la cuenta a: " . $email;
     }else{
         echo "El email no existe";
     }
@@ -30,7 +31,6 @@ if(isset($_POST["volver"])){
     exit;
 }
 
-$conexion->cerrarConexion();
 
 
 

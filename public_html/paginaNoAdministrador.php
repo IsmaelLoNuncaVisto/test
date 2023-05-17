@@ -1,8 +1,9 @@
 <?php
 
-require ("../src/Sesiones.php");
 
-use src\Session;
+require ("../vendor/autoload.php");
+
+use App\Entity\Session;
 
 $sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];

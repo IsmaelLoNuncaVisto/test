@@ -1,8 +1,6 @@
 <?php
-namespace APP\clasesBasicas;
 
-
-
+namespace App\Entity;
 
 class Session{
 

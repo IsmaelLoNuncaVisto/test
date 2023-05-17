@@ -1,9 +1,9 @@
 <?php
 
+require ("../vendor/autoload.php");
 
-use src\Session;
-use src\UsoBD;
-use src\Usuario;
+use App\Entity\Session;
+use App\Services\ConexionUsuario;
 
 $sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
@@ -11,10 +11,9 @@ $sesionId="administrador";
 $nombreSesion="administrador";
 $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
-$conexion=new UsoBD;
-$usurio=new Usuario();
+$conexion=new ConexionUsuario;
 $conexion->establecerConexion();
-$emails=$usuario->recogerEmailsUsuarios();
+$emails=$conexion->recogerEmailsUsuarios();
 
 
 
@@ -35,7 +34,8 @@ if(isset($_POST['editar'])){
 
 if(isset($_POST['eliminar'])){
     $email=$_POST['email'];
-    if($usuario->eliminarUsuario($email)){
+    if($conexion->existeUsuario($email)){
+        $conexion->eliminarUsuario($email);
         echo "Usuario eliminado <p></p>";
         header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador1.php");
         exit;
@@ -46,8 +46,6 @@ if(isset($_POST['eliminar'])){
     }
 }
 
-
-$conexion->cerrarConexion();
 
 ?>
 

@@ -1,6 +1,7 @@
 <?php
-namespace APP\database;
 
+
+namespace App\Database;
 
 
 use PDO;
@@ -11,7 +12,7 @@ class DBIsmael
     private static $_db;
 
 
-    public static function getConexion()
+    public static function getConexion(): PDO
     {
         
         if(!self::$_db){

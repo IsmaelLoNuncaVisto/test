@@ -1,5 +1,5 @@
 <?php
-namespace APP\clasesBasicas;
+namespace App\Entity;
 
 
 
@@ -17,7 +17,7 @@ class Usuario{
     {
         $this->userNameUsuario=$userNameUsuario;
         $this->emailUsuario = $emailUsuario;
-        $this->passwordUsuario = self::encriptadoPassword($passwordUsuario);
+        $this->passwordUsuario =$passwordUsuario;
         $this->nombreUsuario = $nombreUsuario;
         $this->ageUsusario= $ageUsuario;
         $this->telephoneUsuario=$telephoneUsuario;
@@ -68,7 +68,7 @@ class Usuario{
         return $this;
     }
 
-    public function getAgeUsusario()
+    public function getAgeUsuario()
     {
         return $this->ageUsusario;
     }
@@ -107,10 +107,7 @@ class Usuario{
     *
     */
 
-    //HASH PASWORD
+    //CONDICIONES PARA EK USUARIO
 
-    public static function encriptadoPassword($password):string{
-        return password_hash($password,PASSWORD_BCRYPT);
-    }
-
+    
 }

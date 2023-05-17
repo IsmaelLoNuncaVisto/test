@@ -1,19 +1,20 @@
 <?php
 
-use src\UsoBD;
-use src\Usuario;
+require("../vendor/autoload.php");
 
-    $conexion = new UsoBD();
-    $usuario = new Usuario;
+use App\Services\ConexionUsuario;
+
+    $conexion = new ConexionUsuario();
 
     $conexion->establecerConexion();
 
     if(isset($_POST["restablecerPassword"])){
         $token=$_POST["token"];
         $password=$_POST["password"];
-        if($usuario->comprobarValidezToken($token)){
-            $usuario->restablecerPassword($password,$token);
+        if($conexion->tokenValidate($_GET['email'],$token)){
+            $conexion->restablecerPassword($password,$token);
             echo "Se ha restablecido la contraseña";
+            $conexion->removeToken($_GET['email']);
             sleep(2);
             header ("Location: https://wwwdes.ismael.lonuncavisto.org");
             exit;
@@ -21,7 +22,6 @@ use src\Usuario;
             echo "El token ha expirado";
         }
     }
-    $conexion->cerrarConexion();
 
 ?>
 
@@ -68,7 +68,7 @@ use src\Usuario;
         <ul>
             <ol>
                 <label for="token">Token:</label>
-                <input type="text" name="token" id="token">
+                <input type="text" name="token" id="token" value="<?php echo $_GET['token'];?>">
             </ol>
             <ol>
                 <label for="password">Password:</label>

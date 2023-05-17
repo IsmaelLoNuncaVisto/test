@@ -1,20 +1,24 @@
 <?php
-phpinfo();
 
 require_once "../vendor/autoload.php";
 
-use APP\clasesBasicas\Session;
-use App\services\ConexionUsuario;
+use App\Entity\Session;
+use App\Services\ConexionUsuario;
 
-$sesion = new Session();
-$conexionUsuario = new ConexionUsuario;
+
 
 if (isset($_POST["login"])) {
+
+    $sesion = new Session;
+    $conexionUsuario = new ConexionUsuario;
+
+    $conexionUsuario->establecerConexion();
 
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    if ($conexionUsuario->accesoUsuario($email, $password)&& $conexionUsuario->existeToken($email)) {
+    if ($conexionUsuario->isAuthenticated($email, $password)
+        && !$conexionUsuario->existeToken($email)) {
 
         if ($conexionUsuario->accesoPaginaAdministrador($email)==1) {
 
@@ -47,6 +51,8 @@ if (isset($_POST["login"])) {
             header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaNoAdministrador.php");
             exit;
         }
+
+        
     } else {
         echo "Acceso denegado";
     }

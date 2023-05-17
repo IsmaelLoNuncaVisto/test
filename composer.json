@@ -15,7 +15,7 @@
     "license": "MIT License",
     "autoload": {
         "psr-4": {
-            "APP\\": "src"
+            "App\\": "src"
 
         }
     },

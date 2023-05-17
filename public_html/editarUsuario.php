@@ -1,17 +1,19 @@
 <?php
 
-use src\Session;
-use src\UsoBD;
-use src\Usuario;
+require("../vendor/autoload.php");
 
-$sesion=new Session();
+use App\Entity\Session;
+use App\Entity\Usuario;
+use App\Services\ConexionUsuario;
+
+$sesion=new Session;
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
 $sesionId="administrador";
 $nombreSesion="administrador";
 $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
 
-    $conexion=new UsoBD;
+    $conexion=new ConexionUsuario;
     $conexion->establecerConexion();
 
 
@@ -35,9 +37,10 @@ $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
         $age=$_POST['age'];
         $telephone=$_POST['telephone'];
         $administrador=$_POST['administrador'];
-        $crearUsuario=array($userName,$emailActualizar,$password,$name,$age,$telephone,$administrador);
+
+        $usuario=new Usuario($userName,$email,$password,$name,$age,$telephone,$administrador);
         
-        if($conexion->actualizarDatosUsuario($email,$crearUsuario)){
+        if($conexion->actualizarUsuario($usuario,$email)){
             echo "Usuario actualizado";
             header("Location: https://wwwdes.ismael.lonuncavisto.org/editarUsuario.php?email=$emailActualizar");
             exit;
@@ -57,7 +60,8 @@ $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
     if(isset($_POST["cerrarSesion"])){
         $sesion->destroySession($nombreSesion,$sesionId,$VUELTA_PAG_PRINC);
     }
-    $conexion->cerrarConexion();
+
+
 ?>
 
 

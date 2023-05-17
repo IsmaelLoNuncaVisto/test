@@ -1,17 +1,17 @@
 <?php
 
-use src\UsoBD;
-use src\Usuario;
+require_once "../vendor/autoload.php";
 
-$conexion= new UsoBD();
-$usuario=new Usuario();
+use App\Services\ConexionUsuario;
+
+$conexion= new ConexionUsuario;
 $conexion->establecerConexion();
 
 if(isset($_POST["confirmarToken"])){
 
-    if($usuario->comprobarValidezToken($_POST['token'])){
+    if($conexion->tokenValidate($_GET['email'],$_POST['token'])){
         echo "Usuario añadido";
-        $usuario->borrarToken($_POST['token']);
+        $conexion->removeToken($_GET['email']);
         sleep(2);
         header("Location: https://wwwdes.ismael.lonuncavisto.org");
         exit;
@@ -33,7 +33,6 @@ if(isset($_POST["cancelar"])){
 
 }
 
-$conexion->cerrarConexion();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace APP\services;
+namespace App\Services;
 
-
-
+use App\Database\DBIsmael;
+use App\Entity\Usuario;
 use PDO;
 use PDOException;
 
@@ -15,36 +15,51 @@ class ConexionUsuario{
     public function __constructor()
     {
         $this->_db=DBIsmael::getConexion();
+
     }
 
-    public function aniadirUsuario(Usuario $usuario):void{
+    public function establecerConexion()
+    {
+        $this->_db=DBIsmael::getConexion();
+    }
+
+    function encriptadoPassword($password):string{
+        return password_hash($password,PASSWORD_BCRYPT);
+    }
+
+    public function aniadirUsuario(Usuario $usuario):void
+    {
         try {
+            $encripatdoPassword = $this->encriptadoPassword($usuario->getPasswordUsuario());
+
             $stm=$this->_db->prepare(
-                'insert into usuario(userName,email,psswd,nombre,age,telephone,administrador) values (:userName, :email, :password, :nombre, :age, :telephone, :administrador'
+                'INSERT INTO usuario(userName,email,psswd,nombre,age,telephone,administrador) VALUES (:userName,:email,:psswd,:nombre,:age,:telephone,:administrador)'
             );
+            //BINDPARAM 
             $stm->execute([
                 'userName' => $usuario->getUserNameUsuario(),
                 'email' => $usuario->getEmailUsuario(),
-                'password' => $usuario->getPasswordUsuario(),
+                'psswd' => $encripatdoPassword,
                 'nombre' => $usuario->getNombreUsuario(),
-                'age' => $usuario->getAgeUsusario(),
+                'age' => $usuario->getAgeUsuario(),
                 'telephone' => $usuario->getTelephoneUsuario(),
                 'administrador' => $usuario->getAdministrador()
             ]);
         } catch (PDOException $ex) {
-            print "Fallo al ejecutar la query que muestre todos los usuarios";
+            print "Fallo en aniadirUsuario()";
         }
 
     }
 
     public function actualizarUsuario(Usuario $usuario, string $emailAntiguo):void
     {
+        $encripatdoPassword = 'encriptadoPassword'($usuario->getPasswordUsuario());
         try {
             $stm=$this->_db->prepare('
                 update usuario
                 set userName = :userName,
                     email = :email,
-                    password = :password,
+                    psswd = :password,
                     nombre = :nombre,
                     age = :age,
                     telephone = :telephone,
@@ -54,9 +69,9 @@ class ConexionUsuario{
             $stm->execute([
                 'userName' => $usuario->getUserNameUsuario(),
                 'email' => $usuario->getEmailUsuario(),
-                'password' => $usuario->getPasswordUsuario(),
+                'password' => $encripatdoPassword,
                 'nombre' => $usuario->getNombreUsuario(),
-                'age' => $usuario->getAgeUsusario(),
+                'age' => $usuario->getAgeUsuario(),
                 'telephone' => $usuario->getTelephoneUsuario(),
                 'administrador' => $usuario->getAdministrador(),
                 'emailAntiguo' => $emailAntiguo
@@ -82,14 +97,17 @@ class ConexionUsuario{
 
     public function mostrarUsuarios() : array
     {
-        $result = [];
         try {
             //QUERY
             $stm=$this->_db->prepare('select * from usuario');
             //EXECUTE QUERY
             $stm->execute();
             //FETCH ALL
-            $result=$stm->fetchAll(PDO::FETCH_CLASS, '\\TEST\\src\\USUARIO');
+            $result = array();
+            while ($data=$stm->fetch(PDO::FETCH_ASSOC)) {
+                $usuario=new Usuario($data['userName'],$data['email'],$data['psswd'],$data['nombre'],(int)$data['age'],$data['telephone'],(int)$data['administrador']);
+                array_push($result,$usuario);
+            }
         } catch (PDOException $ex) {
             print "Fallo al ejecutar la query que muestre todos los usuarios";
         }
@@ -98,22 +116,32 @@ class ConexionUsuario{
     }
 
     //Usuario escogido según su email
-    public function existeUsuario(string $email): ?Usuario
+    public function existeUsuario(string $email):bool
     {
-        $result = null;
-
         try {
             $stm=$this->_db->prepare('select * from usuario where email = :email');
             $stm->execute(['email' => $email]);
-            $data=$stm->fetchObject('\\TEST\\src\\USUARIO');
-            if($data){
-                $result=$data;
+            $result=$stm->fetch(PDO::FETCH_OBJ);
+            if($result==null){
+                return false;
             }
         } catch (PDOException $ex) {
             print "Fallo al ejecutar la query que muestre todos los usuarios";
         }
+        return true;
+    }
 
-        return $result;
+    public function usuarioEscogido(string $email):Usuario
+    {
+        try {
+            $stm=$this->_db->prepare('select * from usuario where email = :email');
+            $stm->execute(['email' => $email]);
+            $data=$stm->fetch(PDO::FETCH_ASSOC);
+            return new Usuario($data['userName'],$data['email'],$data['psswd'],$data['nombre'],$data['age'],$data['telephone'],$data['administrador']);
+        } catch (PDOException $ex) {
+            print "Fallo al ejecutar la query que muestre todos los usuarios";
+        }
+        return null;
     }
 
     //FUNCIONES EXTRAS
@@ -133,7 +161,7 @@ class ConexionUsuario{
     {
         $result = "";
         try {
-            $stm=$this->_db->prepare('select psswd from usuario where email = :email');
+            $stm=$this->_db->prepare("SELECT psswd FROM usuario WHERE email = :email");
             $stm->execute(['email' => $email]);
             $result=$stm->fetchColumn();
         } catch (PDOException $th) {
@@ -142,7 +170,7 @@ class ConexionUsuario{
         return $result;
     }
 
-    public function accesoUsuario(string $email, string $password):bool
+    public function isAuthenticated(string $email, string $password):bool
     {
         $result=false;
         if(password_verify($password,$this->recogerPassword($email))){
@@ -165,6 +193,24 @@ class ConexionUsuario{
 
     }
 
+
+    public function  recogerEmailsUsuarios():array{
+        try {
+            $stm=$this->_db->prepare("SELECT email FROM usuario");
+            $stm->execute();
+            $result=array();
+            While($data=$stm->fetch(PDO::FETCH_ASSOC)){
+                array_push($result,$data['email']);
+            }
+
+            return $result;
+        } catch (PDOException $th) {
+            //throw $th;
+        }
+        return null;
+    }
+
+
     //TOKEN
     public function tokenUsuario(string $email, string $token, string $expiracion)
     {
@@ -178,18 +224,56 @@ class ConexionUsuario{
     
     public function existeToken(string $email):bool
     {
-        $result = false;
         try {
             $stm=$this->_db->prepare('select token from usuario where email = :email');
             $stm->execute(['email' => $email]);
             $data=$stm->fetchColumn();
             if($data===""){
-                return true;
+                return false;
             }
         } catch (PDOException $th) {
 
         }
-        return $result;
+        return true;
+    }
+
+    public function tokenValidate(string $email, string $token):bool
+    {
+        try {
+            $stm=$this->_db->prepare('select token from usuario where email = :email');
+            $stm->execute(['email'=>$email]);
+            if($token==$stm->fetchColumn()){
+                return true;
+            }
+        } catch (PDOException $th) {
+            //throw $th;
+        }
+        return false;
+    }
+
+    public function restablecerPassword(string $password,string $token)
+    {
+        try {
+            $hash=$this->encriptadoPassword($password);
+            $stm=$this->_db->prepare("UPDATE usuario SET psswd = :psswd WHERE token = :token");
+            $stm->execute(['psswd'=>$hash,'token'=>$token]);
+            
+                return true;
+            
+        } catch (PDOException $th) {
+            //throw $th;
+        }
+        return false;
+    }
+
+    public function removeToken(string $email):void
+    {
+        try {
+            $stm=$this->_db->prepare("UPDATE usuario SET expiracion='0000-00-00 00:00:00', token=''  WHERE email = :email");
+            $stm->execute(['email'=>$email]);
+        } catch (PDOException $th) {
+            //throw $th;
+        }
     }
 }
 

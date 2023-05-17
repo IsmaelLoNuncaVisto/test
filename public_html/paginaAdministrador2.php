@@ -1,9 +1,9 @@
 <?php
 
+require ("../vendor/autoload.php");
 
-use src\Session;
-use src\UsoBD;
-use src\Usuario;
+use App\Entity\Session;
+use App\Services\ConexionUsuario;
 
 $sesion=new Session();
 $VUELTA_PAG_PRINC  = "Location: "  . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
@@ -11,10 +11,10 @@ $sesionId="administrador";
 $nombreSesion="administrador";
 $sesion->condicionesInicioSesion($sesionId,$nombreSesion,$VUELTA_PAG_PRINC);
 
-$conexion=new UsoBD;
+$conexion=new ConexionUsuario;
 $conexion->establecerConexion();
 
-$usuarios=$conexion->recogerUsuarios();
+$usuarios=$conexion->mostrarUsuarios();
 
 if(isset($_POST['cerrarSesion'])){
     $sesion->destroySession($nombreSesion,$sesionId,$VUELTA_PAG_PRINC);
@@ -33,7 +33,8 @@ if(isset($_POST['editar'])){
 
 if(isset($_POST['eliminar'])){
     $emailUsuario=$_POST['email'];
-    if($conexion->eliminarUsuario($emailUsuario)){
+    if($conexion->existeUsuario($email)){
+        $conexion->eliminarUsuario($emailUsuario);
         echo "Usuario eliminado <p></p>";
         header("Location: https://wwwdes.ismael.lonuncavisto.org/paginaAdministrador2.php");
         exit;
@@ -44,8 +45,6 @@ if(isset($_POST['eliminar'])){
     }
 
 }
-
-$conexion->cerrarConexion();
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +85,7 @@ $conexion->cerrarConexion();
                 <label for=""><?php echo $usuario->getNombreUsuario();?></label>
                 </td>
                 <td>
-                <label for=""><?php echo $usuario->getAgeUsuario();?></label>
+                <label for=""><?php echo $usuario->getAgeUsuario()?></label>
                 </td>
                 <td>
                 <label for=""><?php echo $usuario->getTelephoneUsuario();?></label>

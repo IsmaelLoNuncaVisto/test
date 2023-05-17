@@ -1,16 +1,16 @@
 <?php
 
-require ("../src/Email.php");
-require ("../src/Usuario.php");
-require ("../services/ConexionUsuario.php");
+require "../vendor/autoload.php";
 
-use src\Email;
-use test\services\ConexionUsuario;
-use test\src\Usuario;
+use App\Entity\Email;
+use App\Entity\Usuario;
+use App\Services\ConexionUsuario;
 
 if(isset($_POST["create"])){
 
     $conexionUsuario = new ConexionUsuario();
+
+    $conexionUsuario->establecerConexion();
 
     //CREAMOS UN TOKEN QUE SE ENVIARÁ AL MAIL
     $token=uniqid();
@@ -26,25 +26,82 @@ if(isset($_POST["create"])){
     $telephone=$_POST["telephoneNumber"];
     $administrador=$conexionUsuario->administradorAniadirUsuarios();
 
+    $fallos=dataValidate($userName,$email,$psswd,$nombre,$age,$telephone,$administrador);
+
+    if($fallos==""){
+       
+   
+
     $usuario=new Usuario($userName,$email,$psswd,$nombre,$age,$telephone,$administrador);
 
-    //SE ENVÍA EL CORREO
-    $mail=new Email();
-    $mail->enviarEmailCreacionCuenta($email,$token);
 
-    if($conexionUsuario->existeUsuario($email)!=null){
+
+    //SE ENVÍA EL CORREO
+
+    if(!$conexionUsuario->existeUsuario($email)){
+        $mail=new Email();
+        $mail->enviarEmailCreacionCuenta($email,$token);
         $conexionUsuario->aniadirUsuario($usuario);
         $conexionUsuario->tokenUsuario($email,$token,$expiracion);
         echo "Se ha enviado un email para confirmar la cuenta a: " . $email;
     }else{
         echo "El usuario ya existe";
     }
+
+    }else{
+        echo $fallos;
+    }
+
+
 }
 
 if(isset($_POST["volver"])){
     header("Location: https://wwwdes.ismael.lonuncavisto.org");
     exit;
 }
+
+function dataValidate(string $userName, string $email, string $password, string $nombre, int $age, string $telephone, string $administrador):string
+    {
+        if($userName==""||!preg_match_all("/[A-Za-z0-9]*/",$userName)){
+            return "El userName debe contener caractéres alfanuméricos";
+        }
+
+        if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+            return "El email introducido no cumple los requisitos";
+        }
+
+        if(strlen($password)<8||strlen($password)>20){
+            return "La password debe contener entre 8 - 20 caracteres";
+        }
+
+        switch ($password) {
+            case !preg_match("/[!.?*]+/",$password):
+                return "La contraseña debe contener por lo menos 1 de estos elementos (! . ? *)";
+                break;
+                case !preg_match("/[A-Za-z0-9]*/",$password):
+                    return "La contraseña debe contener valores alfanuméricos";
+                break;
+        }
+         if(!preg_match("/[A-Za-z]*/",$nombre)){
+            return "El nombre solamente puede contener caracteres alfabéticos";
+         }
+
+         if(!preg_match("/[0-9]{2}/",$age)){
+            return "La edad debe contener 2 cifras";
+         }
+
+         if(!preg_match("/[0-9]{9}/",$telephone)){
+            return "El número de teléfono debe tener este aspecto: 999999999";
+         }
+         if($administrador!=0&&$administrador!=1){
+            return "Error en el administrador";
+         }
+
+         return "";
+        
+
+    }
+
 
 ?>
 
@@ -59,14 +116,14 @@ if(isset($_POST["volver"])){
 
     <script>
         function validarFormulario(){
-        var userName=document.getElementById("inputuserName").value;
-        var email=document.getElementById("inputemail").value;
-        var password=document.getElementById("inputpassword").value;
-        var passwordRepeat=document.getElementById("inputpasswordConfirm").value;
-        var nombre=document.getElementById("inputnombre").value;
-        var age=document.getElementById("inputage").value;
-        var telephone=document.getElementById("inputtelephone").value;
-        var fallos ="";
+        const userName=document.getElementById("inputuserName").value;
+        const email=document.getElementById("inputemail").value;
+        const password=document.getElementById("inputpassword").value;
+        const passwordRepeat=document.getElementById("inputpasswordConfirm").value;
+        const nombre=document.getElementById("inputnombre").value;
+        const age=document.getElementById("inputage").value;
+        const telephone=document.getElementById("inputtelephone").value;
+        let fallos ="";
         
         /*
         if(userName===''||email===''||password===''||passwordRepeat===''||name===''||telephone===''){
@@ -85,7 +142,7 @@ if(isset($_POST["volver"])){
             fallos+=userName + "|";
         }
 
-        if(email.length>25){
+        if(email.length>100){
             fallos+=email + "|";
         }
 
@@ -95,7 +152,7 @@ if(isset($_POST["volver"])){
         if(age.length>99){
             fallos+=age + "|";
         }
-        if(telephone.length>12){
+        if(telephone.length>13){
             fallos+=telephone + "|";
         }
         if(fallos.length>0){
@@ -136,7 +193,7 @@ if(isset($_POST["volver"])){
             </ol>
             <ol>
                 <label for="telephoneNumber">Telephone:</label>
-                <input type="tel" name="telephoneNumber" pattern="+[0-9]{2}-[0-9]{9}" placeholder="+34-123456789" id="inputtelephone">
+                <input type="tel" name="telephoneNumber" placeholder="+34123456789" id="inputtelephone">
             </ol>
             <ol>
                 <button type="submit" name="create" onclick="validarFormulario();">Create Account</button>
