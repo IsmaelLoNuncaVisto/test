@@ -14,8 +14,6 @@ class Email{
         $mail->CharSet = "UTF-8";
         $mail->Host = 'imap.lonuncavisto.com';
         $mail->SMTPAuth=true;
-        $mail->Username='ismael@lonuncavisto.com';
-        $mail->Password='hd29823bd0.9aqP';
         $mail->SMTPSecure='STARTTLS';
         $mail->Port=587;
      

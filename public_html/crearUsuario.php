@@ -31,23 +31,21 @@ if(isset($_POST["create"])){
     if($fallos==""){
        
    
-
-    $usuario=new Usuario($userName,$email,$psswd,$nombre,$age,$telephone,$administrador);
-
+         $usuario=new Usuario($userName,$email,$psswd,$nombre,$age,$telephone,$administrador);
 
 
-    //SE ENVÍA EL CORREO
 
-    if(!$conexionUsuario->existeUsuario($email)){
-        $mail=new Email();
-        $mail->enviarEmailCreacionCuenta($email,$token);
-        $conexionUsuario->aniadirUsuario($usuario);
-        $conexionUsuario->tokenUsuario($email,$token,$expiracion);
-        echo "Se ha enviado un email para confirmar la cuenta a: " . $email;
-    }else{
-        echo "El usuario ya existe";
-    }
+        //SE ENVÍA EL CORREO
 
+        if(!$conexionUsuario->existeUsuario($email)){
+            $mail=new Email();
+            $mail->enviarEmailCreacionCuenta($email,$token);
+            $conexionUsuario->aniadirUsuario($usuario);
+            $conexionUsuario->tokenUsuario($email,$token,$expiracion);
+            echo "Se ha enviado un email para confirmar la cuenta a: " . $email;
+        }else{
+            echo "El usuario ya existe";
+        }
     }else{
         echo $fallos;
     }
